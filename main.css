@@ -5,4 +5,13 @@ html {
 body {
   background-color: black;
   color: white;
+  font-family: cursive;
+}
+
+a {
+  color: darkred;
+}
+
+a:hover, a:active {
+  color: white;
 }
