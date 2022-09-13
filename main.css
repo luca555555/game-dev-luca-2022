@@ -12,6 +12,10 @@ a {
   color: darkred;
 }
 
+a:visited {
+  coloe:red;
+}
+
 a:hover, a:active {
   color: white;
 }
