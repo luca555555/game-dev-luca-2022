@@ -19,3 +19,25 @@ a:visited {
 a:hover, a:active {
   color: white;
 }
+
+tr, th, td, caption {
+    border: 1px solid white;
+    border-collapse: collapse;
+    font-family: cursive;
+    padding: 0.5rem;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .button001 {background-color: #4CAF50;}
+  .button002 {background-color: #ff3550;}
