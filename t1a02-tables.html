@@ -53,6 +53,14 @@
       
       <button class="button button001" onclick="{document.getElementById('flwr').style.left = parseInt(document.getElementById('flwr').style.left) + 10 + 'px'}">Move image</button><br>
       <img id="flwr" style="position: absolute; width: 100px; height: 100px; top: 860px; left: 170px;">
+    
+    <script>
+      document.addEventListener("keydown", function(e) {
+           if (e.keyCode == 16)
+               document.getElementById('flwr').style.left = parseInt(document.getElementById('flwr').style.left) + 10 + 'px'
+           };
+       });
+    </script>
   </body>
   <footer>
     <p><a href="index.html">Back to index</a></p>
