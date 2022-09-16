@@ -52,14 +52,14 @@
     <br><br>
       
       <button class="button button001" onclick="{document.getElementById('flwr').style.left = parseInt(document.getElementById('flwr').style.left) + 10 + 'px'};
-                                                {document.getElementById('soup').innerHTML = 'You can also move is with WASD'}">Move image</button><br>
+                                                {document.getElementById('soup').innerHTML = 'You can also move it with WASD'}">Move image</button><br>
     <p id="soup"></p>
       <img id="flwr" style="position: absolute; width: 100px; height: 100px; top: 860px; left: 170px;">
     
     <script>
       document.addEventListener("keydown", function(e) {
            if (e.keyCode == 16)
-               document.getElementById('flwr').style.left = parseInt(document.getElementById('flwr').style.left) + 10 + 'px'
+               $(document.getElementById('flwr').style.left = parseInt(document.getElementById('flwr').style.left) + 10 + 'px')
            };
        });
     </script>
