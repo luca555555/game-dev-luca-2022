@@ -3,21 +3,21 @@ html {
 }
 
 body {
-  background-color: black;
-  color: white;
-  font-family: cursive;
+    background-color: rgb(100, 96, 96);
+    color: rgb(255, 255, 255);
+    font-family: cursive;
+    font-style: normal;
 }
 
 a {
-  color: darkred;
+    color: rgb(0, 0, 0);
 }
-
 a:visited {
-  coloe:red;
+    color:rgba(0, 0, 0, 0.644);
 }
 
 a:hover, a:active {
-  color: white;
+    color:white;
 }
 
 tr, th, td, caption {
