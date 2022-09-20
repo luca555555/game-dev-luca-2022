@@ -69,8 +69,12 @@ document.getElementById('mypar002').innerHTML = 'player = {name:\'Yo7\', level:6
 
       <details>
         <summary>FLack</summary>
-      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Named chunk of code that can be called multiple times'}">Functions</button>
-      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Repeat something'}">Loops</button>
+      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Named chunk of code that can be called multiple times';
+document.getElementById('mypar002').innerHTML = ''}">Functions</button>
+        
+        
+      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Repeat something';
+document.getElementById('mypar002').innerHTML = ''}">Loops</button>
       <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Numbered variables'}">Arrays</button>
       <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Everything grouped together'}">Classes</button>
         </details>
