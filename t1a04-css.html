@@ -12,7 +12,7 @@
       <h3>Luca</h3>
       <hr>
       <p onclick="{x()}" style="color: red;" id="mypar001">Cool</p>
-      <p id="y">shoe</p>
+      <p id="y" onclick="{fuk()}">shoe</p>
     </center>
     <p><a href="index.html">Back to index</a></p>
     
@@ -23,6 +23,11 @@
         } else {
           alert('Hello venus')
           document.getElementById('y').innerHTML = 'ruber'  
+        }
+      }
+      function fuk() {
+        if (document.getElementById('y').innerHTML = 'shoe') {
+          document.getElementById('mypar001').innerHTML = 'Grape'
         }
       }
     </script>
