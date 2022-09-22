@@ -14,13 +14,15 @@
     <form>
       First name <input type=text autofocus placeholder="Bob" size="7" spellcheck="true" maxlength="10"><br>
       Last name <input type=text autofocus placeholder="smth" size="7" spellcheck="true" maxlength="10"><br>
-      Age <input type=number placeholder="69" size="2" maxlength="3"><br>
+      Age <input type=number placeholder="69" id="age"><br><br>
+      Check boxes<br>
       Box 1<input type=checkbox><br>
       Box 2<input type=checkbox><br>
-      Box 3<input type=checkbox><br>
+      Box 3<input type=checkbox><br><br>
+      Radio buttons<br>
       Circle 1<input type=radio name="rad1" value="0"><br>
-      Circle 2<input type=radio name="rad1" value="0"><br>
-      Select<br>
+      Circle 2<input type=radio name="rad1" value="0"><br><br>
+      Selection box <br>
       <select size="4" >
         <option>One</option>
         <option>s</option>
@@ -29,16 +31,32 @@
         <option>sre</option>
         <option>sre</option>
         <option>sre</option>
-      </select><br>
-      File <input type=file><br>
-      Textarea <button onclick="{document.getElementById('x').value='Clear'}">Clear textarea</button><br>
-      <textarea id="x" cols="40" rows="5" placeholder="Extra"></textarea><br>
+      </select><br><br>
+      File donation<br>
+      <input type=file><br><br>
+
+      Extra text
+      <input type=button class="button003" value="Clear" onclick="{
+        document.getElementById('x').value = ''
+     }"><br>
+     <textarea id="x" cols=40 rows=5 placeholder="This is a placeholder"></textarea><br>
       
+      <br>
       
-      
-      <button class="button button001" onclick="{}">Submit</button>
-      <button class="button button002" onclick="{location=stabby stabby}">Reset</button>
+      <button class="button button001" onclick="{funk()}">Submit</button>
+      <button class="button button002" onclick="{funk2()}">Reset</button>
     </form>
+    <script>
+      function funk(){
+        document.write(' <head><link rel="stylesheet" href="main.css" type="text/css"></head><h1 align=center>Thank</h1>'
+        + '<p align=center><a href="">Back to form</a></p>'
+        )
+      }
+
+      function funk2(){
+        document.reload
+      }
+    </script>
     <p><a href="index.html">Back to index</a></p>
   </body>
 </html>
