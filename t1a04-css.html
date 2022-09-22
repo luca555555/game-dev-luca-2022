@@ -11,13 +11,14 @@
       <h1>t1a04 | css</h1>
       <h3>Luca</h3>
       <hr>
-      <p onclick="{x()}" style="color: red;">P text</p>
+      <p onclick="{x()}" style="color: red;" id="mypar001">Click this text</p>
     </center>
     <p><a href="index.html">Back to index</a></p>
     
     <script>
       function x(){
         alert('You suck')
+        document.getElementById('mypar001').innerHTML = 'Flap'
       }
     </script>
   </body>
