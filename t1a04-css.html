@@ -12,6 +12,8 @@
       <h3>Luca</h3>
       <hr>
       <p onclick="{fun001()}" style="color: red;" id="mypar001" value="1" >Cool</p>
+      <br>
+      <p onclick="{fun002()}" id="mypar002">fluk</p>
     </center>
     <p><a href="index.html">Back to index</a></p>
     
@@ -20,10 +22,16 @@
         alert('ok')
         if (document.getElementById('mypar001').value = '1'){
           document.getElementById('mypar001').innerHTML = 'ss'
-          document.getElementById('mypar001').value = '5'
         } else {
           document.getElementById('mypar001').innerHTML = 'iiiiii'
-          document.getElementById('mypar001').value = '1'
+        }
+      }
+      
+      function fun002() {
+        document.getElementById('mypar002').innerHTML = 'x'
+        
+        if (x = 'fluk') {
+          alert=('s')
         }
       }
     </script>
