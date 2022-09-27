@@ -16,29 +16,34 @@
     <hr>
 
     <section id="basic_page">
-    <p><a href="https://www.google.ca/?safe=active&ssui=on">Link to Google</a></p>
-      <p>This is pain text <b>this is bold</b><i> This is italics</i></p>
-      <p><u>and this is underlined</u></p>
+    <p><a href="https://www.google.ca/?safe=active&ssui=on" target="_blank">Link to Google</a></p>
+    <p><a href="https://www.youtube.com/" target="_blank">Link to YouTube</a></p>
+    <p><b>This is in bold </b><i>now its in italics </i><u>and now its underlined</u></p>
+    <p><b><i><u>This is all three</u></i></b></p>
       
-<br><br>
       <details>
-        <summary>Random Picture</summary>
+        <summary>Pictures</summary>
       <figure>
       <img src="https://th.bing.com/th/id/OIP.utlBGCla4bmIFf8euXVVWQHaGv?pid=ImgDet&rs=1" width="200" height="100">
-        <img src="https://www.bing.com/images/search?view=detailV2&ccid=Wytlw5Am&id=A06A52DE11B3C4A65136E6AA04485E335DF6CAD7&thid=OIP.Wytlw5AmN2HoCJ_kLGF1EgHaF7&mediaurl=https%3a%2f%2fimages5.fanpop.com%2fimage%2fphotos%2f28000000%2frandomised-random-28065165-1024-819.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.5b2b65c390263761e8089fe42c617512%3frik%3d18r2XTNeSASq5g%26pid%3dImgRaw%26r%3d0&exph=819&expw=1024&q=random+images&simid=607989545064079210&FORM=IRPRST&ck=5F34840EFC407681C7C0CA7637AFFA17&selectedIndex=2&ajaxhist=0&ajaxserp=0" width="150" height="100">
+      <img src="https://png.pngtree.com/thumb_back/fh260/back_pic/03/54/06/62579986dba62df.jpg" width="200" height="100">
+      <img src="https://i.pinimg.com/736x/9e/e6/25/9ee625d83c498599498ba90850a99332.jpg" width="200" height="100">
+      <img src="https://i.pinimg.com/736x/a5/12/08/a51208efc59bea8a3920ed6797d59af0.jpg" width="200" height="100">
+      <img src="https://www.freecodecamp.org/news/content/images/2021/06/w-qjCHPZbeXCQ-unsplash.jpg" width="200" height="100">
+      <br><br>
+      <img src="" width="200" height="100" alt="this is image alt text">
       </figure>
       </details>
       
 <br>
 <details>
-  <summary>YouTube Video</summary>
+  <summary>Videos</summary>
 <figure>
-<iframe width="550" height="300" src="https://www.youtube.com/embed/sAeXxgzoqEM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sAeXxgzoqEM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ruYPkxoFkiE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </figure>
-  </details
+</details>
 
-  <br>
-  <br>
+<br><br>
 
     <div>This is a div</div>
     <span>This is a span</span>
@@ -71,18 +76,26 @@ document.getElementById('mypar002').innerHTML = 'player = {name:\'Yo7\', level:6
       <details>
         <summary>FLack</summary>
       <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Named chunk of code that can be called multiple times';
-document.getElementById('mypar002').innerHTML = ''}">Functions</button>
+document.getElementById('mypar002').innerHTML = '&lt; script &gt; <br> function x() { <br> alert(\'python is overrated\') <br> } <br> &lt; /script &gt;'}">Functions</button>
         
         
       <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Repeat something';
-document.getElementById('mypar002').innerHTML = ''}">Loops</button>
-      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Numbered variables'}">Arrays</button>
-      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Everything grouped together'}">Classes</button>
+document.getElementById('mypar002').innerHTML = 'for (x=0; x < 3; x++) { <br> }'}">Loops</button>
+
+      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Numbered variables';
+document.getElementById('mypar002').innerHTML = ' x[0] = 3; <br> x[1] = 6;'}">Arrays</button>
+
+      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Everything grouped together';
+document.getElementById('mypar002').innerHTML = 'class=A-bunch-of-premade-styles'}">Classes</button>
         </details>
 
       <details>
         <summary>Algorithem</summary>
-      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Code explained with normal words kind of like a plan of using basic ideas'}">Pseude code</button>
+      <button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = 'Code explained with normal words kind of like a plan of using basic ideas';
+document.getElementById('mypar002').innerHTML = 'run forward; <br> if hit box get one life;'}">Pseude code</button>
+
+<button class="button button001" onclick="{document.getElementById('mypar001').innerHTML = ' ';
+document.getElementById('mypar002').innerHTML = ' '}">Clear text</button>
         </details>
       <p id="mypar001"></p>
       <p id="mypar002"></p>
