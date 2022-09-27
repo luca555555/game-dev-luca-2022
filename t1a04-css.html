@@ -7,12 +7,27 @@
     <link rel="icon" href="images/7.png" type="x-icon/image">
     <style>
       body {
-        background-image: url("https://th.bing.com/th/id/R.16b954ac7159836d6c05ede89ad85f96?rik=uvzQnfyj9JoTqA&pid=ImgRaw&r=0");
+        background: url("https://t4.ftcdn.net/jpg/04/04/40/49/360_F_404404954_WGYZtTwswIrXnJl6qVeEFK5UWPFflVB8.jpg");
       }
-      
-      li {
-        display: block;
-      }
+
+
+      div {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  position: relative;
+  animation-name: test;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes test {
+  0%   {background-color:rgb(74, 230, 27); left:0px; top:0px;}
+  25%  {background-color:rgb(100, 46, 228); left:800px; top:0px;}
+  50%  {background-color:rgb(10, 10, 209); left:0px; top:0px;}
+  75%  {background-color:rgb(255, 46, 175); left:-800px; top:0px;}
+  100% {background-color:rgb(74, 230, 27); left:0px; top:0px;}
+}
     </style>
   </head>
   <body>
@@ -20,23 +35,20 @@
       <h1>t1a04 | css</h1>
       <h3>Luca</h3>
       <hr>
-      <p title="Breadstick">This has a tool tip</p>
-      <p><a href="https://google.com" style="text-decoration: none;">This is a link with no underline</a></p>
-      cool list
-      <ul style="list-style-type: none; margin: 0; padding: 0; width: 200px; background-color: #f1f1f1;">
-        <li>AAA</li>
-        <li>OOOO</li>
-      </ul>
-      <button id="ss" onclick="{fun002()}" class="button button001">Change</button><br>
-      <input type=text placeholder="black" id="txt"><br>
-      <p id="mypar001" style="color:red">Apple</p>
-    </center>
-    <p><a href="index.html">Back to index</a></p>
+      <p style="color: red;">color</p>
+      <p style="background: red;">background color</p>
+      <p style="font-size: 55px;">font size</p>
+      <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">font family</p>
+      <p style="cursor: grab;">cursor change</p>
+      <p style="opacity: 0.5;">opacity</p>
+      <p style="text-shadow: 2px -2px #000000;">shadow</p>
+      <p style="text-decoration:overline underline;">Text decoration</p>
+      <p><a href="https://google.com" target="_blank" style="text-decoration: none;">Text decoration link</a></p>
+      <p title="Breadstick">tool tip</p>
+      <p style="font-size: 30px">animation</p>
+      <div></div>
     
-    <script>
-      function fun002(){
-        document.getElementById('mypar001').style.color = 'yellow'
-      }
-    </script>
+    <p><a href="index.html">Back to index</a></p>
+  </center>
   </body>
 </html>
