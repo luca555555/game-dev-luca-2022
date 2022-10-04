@@ -19,7 +19,7 @@
     
     #mydiv001 {animation-timing-function: ease;}
     #mydiv002 {animation: mymove2 5s infinite ease;}
-    #mydiv003 {animation: mymove3 5s infinite ease;}
+    #mydiv003 {animation: mymove3 5s infinite ease; class="button button001"}
 
 @keyframes mymove {
   0% {background-color: red; left: 0px; top: 0px;}
@@ -38,11 +38,8 @@
 }
     
     @keyframes mymove3 {
-  0% {background-color: red; left: 0px; top: 0px;}
-  25% {background-color: green; left: 100px; top: 0px;}
-  50% {background-color: blue; left: 100px; top: 100px;}
-  75% {background-color: green; left: 0px; top: 100px;}
-  100% {background-color: red; left: 0px; top: 0px;}
+      0% {background-color: red; left: -200px; top: -200px;}
+      100% {background-color: red; left: 500px; top: 500px;}
 }
   </style>
 </head>
