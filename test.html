@@ -19,7 +19,7 @@
     
     #mydiv001 {animation-timing-function: ease;}
     #mydiv002 {animation: mymove2 5s infinite ease;}
-    #mydiv003 {animation: mymove3 5s infinite ease; style="background-color: blue;"}
+    #mydiv003 {animation: mymove3 5s infinite ease; background-color: blue; width: 500px; height: 500px;}
 
 @keyframes mymove {
   0% {background-color: red; left: 0px; top: 0px;}
@@ -39,7 +39,8 @@
     
     @keyframes mymove3 {
       0% {left: 0px; top: -200px;}
-      100% {left: 500px; top: 500px;}
+      50% {left: 500px; top: 500px;}
+      100% {left: 0px; top: -200px;}
 }
   </style>
 </head>
