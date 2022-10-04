@@ -12,6 +12,8 @@
   height: 100px;
   position: relative;
   background-color: red;
+      color: white;
+      font-size: 20px;
   animation-name: mymove;
   animation-duration: 8s;
   animation-iteration-count: infinite;
@@ -19,7 +21,7 @@
     
     #mydiv001 {animation-timing-function: ease;}
     #mydiv002 {animation: mymove2 5s infinite ease;}
-    #mydiv003 {animation: mymove3 5s infinite ease; background-color: blue; width: 500px; height: 500px;}
+    #mydiv003 {animation: mymove3 5s infinite ease; background-color: blue; width: 50px; height: 50px;}
 
 @keyframes mymove {
   0% {background-color: red; left: 0px; top: 0px;}
@@ -39,7 +41,7 @@
     
     @keyframes mymove3 {
       0% {left: 0px; top: -200px;}
-      50% {left: 500px; top: 500px;}
+      50% { transform: rotate(360deg); left: 500px; top: 500px;}
       100% {left: 0px; top: -200px;}
 }
   </style>
@@ -52,6 +54,6 @@
   
   <div id="mydiv001"></div>
   <div id="mydiv002"></div>
-  <div id="mydiv003"></div>
+  <div id="mydiv003">Flor</div>
 </body>
 </html>
