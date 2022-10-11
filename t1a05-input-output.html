@@ -14,7 +14,7 @@
         <input id="mynum01" type="number" value="69"><br>
         <input id="mynum02" type="number" value="420"><br>
         
-        <button class="button button001" style="padding: 10px 20px;" onclick="{z()}">add</button>
+        <button class="button button001" style="padding: 10px 20px;" onclick="{y()}">add</button>
         <button class="button button001" style="padding: 10px 20px;" onclick="{z()}">subtract</button>
         <button class="button button001" style="padding: 10px 20px;" onclick="{z()}">multiply</button>
         <button class="button button001" style="padding: 10px 20px;" onclick="{z()}">devide</button>
@@ -22,6 +22,7 @@
         
         
         <div id="mydiv01">...</div>
+        <div id="mydiv02">...</div>
         <p><a href="index.html">Back to index</a></p>
       </center>
       <script>
@@ -30,7 +31,18 @@
           let answer01 = mytemp * mytemp
           document.getElementById('mydiv01').innerHTML = 
             mytemp + ' squared = ' + answer01
+          
+          let mytemp01 = parseFloat(document.getElementById('mynum02').value)
+          let answer02 = mytemp01 * mytemp01
+          document.getElementById('mydiv02').innerHTML = 
+            mytemp01 + ' squared = ' + answer02
         }
+        
+        function y() {
+          let mytemp04 = parseFloat(document.getElementById('mynum01').value)
+          let mytemp03 = parseFloat(document.getElementById('mynum02').value)
+        }
+        
         function z() {
           alert('working on')
         }
