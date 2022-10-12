@@ -14,18 +14,17 @@
       
       <script>
         function fuc01() {
-          alert('penis')
           num = document.getElementById('mytext').value
           
-          if (num > 10) {
-            document.getElementById('mydiv01').innerHTML = num
+          if (num > 50) {
+            document.getElementById('mydiv01').innerHTML += 'is more than 50'
           } else {
-            document.getElementById('mydiv01').innerHTML = 'Fuck'
+            document.getElementById('mydiv01').innerHTML = 'is less than 50'
           }
                          }
       </script>
       
-<input type="number" id="mytext" value="50" size="10">
+<input type="number" id="mytext" value="50" placeholder="50">
 <button class="button button003" onclick="{fuc01()}">Do thingz</button> 
 <div id='mydiv01'>...</div><br>
       
