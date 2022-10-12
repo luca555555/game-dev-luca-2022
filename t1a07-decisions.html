@@ -15,8 +15,6 @@
           <input type="number" id="mytext" value="50" size="10">     
     
 <input type="button" value="IF" onclick="{
-      
-   document.getElementById('mydiv01').innerHTML = ''
                                                                     
    myIf =   document.getElementById('mytext').value
      
@@ -32,24 +30,18 @@
       document.getElementById('mydiv01').innerHTML += '' + myIf + ' is more than 50 <br>'
    }
 }">
+      
 <div id='mydiv01'>...</div><br>
       
-
-<input type="button" value="IF/else" onclick="{
+      <button class="button button001" onclick="{fuc01()}">SH</button>
       
-   document.getElementById('mydiv02').innerHTML = ''
-                                                                    
-   myIf =   document.getElementById('mytext').value
-     
-   if (myIf == 50){                                                                
-      document.getElementById('mydiv01').innerHTML += 'is equal to 50'
-   } else {
-                                              document.getElementById('mydiv01').innerHTML += 'Else'
-                                              }
-}">
+      <script>
+        function fuc01() {
+          alert('penis')
+        }
+      </script>
       
-      
-               <p><a href="index.html">Back to index</a></p>
+<p><a href="index.html">Back to index</a></p>
     </center>
   </body>
 </html>
