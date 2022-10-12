@@ -25,17 +25,25 @@
           if (num > 49 && num < 51) {
             document.getElementById('mydiv01').innerHTML = '' + num + ' is the default number'
           }
+          
+          /////////////////////////////////////////////////////////////////////////////////////
+          
+          if (num > 1 && num < 100) {
+            document.getElementById('mydiv01').innerHTML = '' + num + ' is between 1 and 100'
+          } else {
+            document.getElementById('mydiv01').innerHTML = '' + num + ' is not between 1 and 100'
+          }
                          }
       </script>
       
 
       <button class="button button003" onclick="{fuc01()}">Do thingz</button><br>
-      <input type="number" id="mytext" value="50" placeholder="50">
+      <input type="number" id="mytext" value="50" placeholder="50"><br>
       
       <div id='mydiv01'>...</div><br>
       <details>
         <summary>
-          Reveal more statements
+          More statements
         </summary>
       <div id='mydiv02'>...</div><br>
       </details>
