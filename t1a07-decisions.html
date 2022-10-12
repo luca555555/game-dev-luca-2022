@@ -16,17 +16,25 @@
         function fuc01() {
           num = document.getElementById('mytext').value
           
-          if (num > 50) {
-            document.getElementById('mydiv01').innerHTML = '' + num + 'is more than 50'
+          if (num > 49) {
+            document.getElementById('mydiv01').innerHTML = '' + num + ' is more than 50'
           } else {
-            document.getElementById('mydiv01').innerHTML = '' + num + 'is less than 50'
+            document.getElementById('mydiv01').innerHTML = '' + num + ' is less than 50'
           }
                          }
       </script>
       
-<input type="number" id="mytext" value="50" placeholder="50">
-<button class="button button003" onclick="{fuc01()}">Do thingz</button> 
-<div id='mydiv01'>...</div><br>
+
+      <button class="button button003" onclick="{fuc01()}">Do thingz</button><br>
+      <input type="number" id="mytext" value="50" placeholder="50">
+      
+      <details>
+        <summary>
+          Reveal divs
+        </summary>
+       <div id='mydiv01'>...</div><br>
+      <div id='mydiv02'>...</div><br>
+      </details>
       
       
       
