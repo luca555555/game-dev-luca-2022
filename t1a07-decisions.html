@@ -16,7 +16,7 @@
     
 <input type="button" value="IF" onclick="{
                                                                     
-   myIf =   document.getElementById('mytext').value
+   myIf =   parseFloat(document.getElementById('mytext').value)
      
    if (myIf == 50){                                                                
       document.getElementById('mydiv01').innerHTML += '' + myIf + ' is equal to 50 <br>'
@@ -33,11 +33,13 @@
       
 <div id='mydiv01'>...</div><br>
       
-      <button class="button button001" onclick="{fuc01()}">SH</button>
+      <button class="button button003" onclick="{fuc01()}">Do things</button>
       
       <script>
         function fuc01() {
           alert('penis')
+          num = document.getElementById('mytext').value
+          document.getElementById('mydiv01').innerHTML = num
         }
       </script>
       
