@@ -16,9 +16,16 @@
         function fuc01() {
           alert('penis')
           num = document.getElementById('mytext').value
-          document.getElementById('mydiv01').innerHTML = num
-        }
+          
+          if (num > 10) {
+            document.getElementById('mydiv01').innerHTML = num
+          } else {
+            document.getElementById('mydiv01').innerHTML = 'Fuck'
+          }
+                         }
       </script>
+      
+<button class="button button003" onclick="{fuc01()}">Do thingz</button>
       
 <input type="number" id="mytext" value="50" size="10">     
     
@@ -41,7 +48,7 @@
       
 <div id='mydiv01'>...</div><br>
       
-      <button class="button button003" onclick="{fuc01()}">Do thingz</button>
+      
       
       
       
