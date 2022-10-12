@@ -33,20 +33,47 @@
           } else {
             document.getElementById('mydiv02').innerHTML = '' + num + ' is not between 1 and 100'
           }
+          
+          /////////////////////////////////////////////////////////////////////////////////////
+          
+          if (num == 60 || num == 40) {
+            document.getElementById('mydiv03').innerHTML = '' + num + ' is equal to 60 or 40'
+          } else {
+            document.getElementById('mydiv03').innerHTML = '' + num + ' is not equal to 60 or 40'
+          }
+          
+          /////////////////////////////////////////////////////////////////////////////////////
+          
+          if (num > 100 && num != 69) {
+            document.getElementById('mydiv04').innerHTML = '' + num + ' is less than 100 but not 69'
+          } else {
+            document.getElementById('mydiv04').innerHTML = '' + num + ' 69 is also less than 100'
+          }
+          
+          /////////////////////////////////////////////////////////////////////////////////////
+          
+          if ((num < 10 && num > 60) num != 14 && num != 22) {
+            document.getElementById('mydiv05').innerHTML = '' + num + ' is between 10 and 60 its also not 14 or 22'
+          } else {
+            document.getElementById('mydiv05').innerHTML = '' + num + ' is not between 10 and 60 or ist the number 14 or 22'
+          }
                          }
       </script>
       
 
       <button class="button button003" onclick="{fuc01()}">Do thingz</button><br>
-      <input type="number" id="mytext" value="50" placeholder="50"><br>
+      <input type="number" id="mytext" value="50" placeholder="50"><br><br>
       
       <div id='mydiv01'>...</div><br>
       <details>
         <summary>
           More statements
         </summary>
-      <div id='mydiv02'>...</div><br>
-      </details>
+        <div id='mydiv02'>...</div>
+        <div id='mydiv03'>...</div>
+        <div id='mydiv04'>...</div>
+        <div id='mydiv05'>...</div>
+      </details><br>
       
       <details>
         <summary>
