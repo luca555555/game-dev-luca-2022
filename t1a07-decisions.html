@@ -13,6 +13,14 @@
       <hr>
       
       <script>
+        
+        document.addEventListener("keydown", function(e) {
+           if (e.keyCode == 13) {
+             alert('d')
+             fuc01()
+           };
+       });
+        
         function fuc01() {
           num = document.getElementById('mytext').value
           
