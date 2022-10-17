@@ -18,9 +18,6 @@ let temp = ' '
 let number = parseInt(document.getElementById('num').value)
 
 for (let loop = 0; loop < number; loop++) {
-if (loop * 2 > number) {
-temp += 'sad'
-}
 temp += 'loop number: ' + loop + '<br>'
 }
 document.getElementById('div').innerHTML = temp
