@@ -13,8 +13,9 @@
 <script>
 function loop() {
 document.getElementById('div').innerHTML = ''
-let number = pareInt(document.getElementById('num').value)
 let temp = ' '
+
+let number = parseInt(document.getElementById('num').value)
 
 for (let loop = 0; loop < number; loop++) {
 if (loop * 2 > number) {
