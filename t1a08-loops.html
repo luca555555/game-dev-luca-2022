@@ -5,31 +5,75 @@
   <link rel="stylesheet" href="main.css" type="text/css">
 </head>
 <body>
-  <center>
-    <h1>t1a08 loops</h1>
+    <center>
+    <h1>Loops</h1>
     <h3>Luca</h3>
-    
-    <input id="num" type="number" value="4"><br>
+    number of loops/delay  <br>
+    <input id="num" type="number" value="100"><br>
     
     <button class="button button001" onclick="loop()">Basic</button>
+    <button class="button button001" onclick="loop2()">50% change</button>
+    <button class="button button001" onclick="loop3()">Even/odd</button>
+    <button class="button button001" onclick="loop4()">Infinit with delay</button>
     
-    <div id="div">No loops</div>
+    <div id="div">...</div>
     
-    <p><a href="index.html>Back to index</a></p>
-  </center>
-
+    <p><a href="index.html">Back to index</a></p>
+</center>
 <script>
+let myClock
+
 function loop() {
 document.getElementById('div').innerHTML = ''
 let temp = ' '
-
 let number = parseInt(document.getElementById('num').value)
-
 for (let loop = 0; loop < number; loop++) {
 temp += 'loop number: ' + loop + '<br>'
 }
 document.getElementById('div').innerHTML = temp
 }
+
+function loop2() {
+document.getElementById('div').innerHTML = ''
+let temp = ' '
+let number = parseInt(document.getElementById('num').value)
+for (let loop = 0; loop < number; loop++) {
+    if (loop * 2 > number) {
+        temp += ' sad '
+    }
+temp += 'loop number: ' + loop + '<br>'
+}
+document.getElementById('div').innerHTML = temp
+}
+
+function loop3() {
+document.getElementById('div').innerHTML = ''
+let temp = ' '
+let number = parseInt(document.getElementById('num').value)
+for (let loop = 0; loop < number; loop++) {
+    if (loop % 2 == 0){
+    temp += ' <font color=green> even </font> '
+}
+if (loop % 2 == 1){
+    temp += ' <font color=red> odd </font> '
+}
+temp += 'loop number: ' + loop + '<br>'
+}
+document.getElementById('div').innerHTML = temp
+}
+
+ x = 0
+ y = 100
+
+function loop4() {
+    document.getElementById('div').innerHTML = ' '
+    y = document.getElementById('num').value
+    clearInterval(myClock)
+  myClock = setInterval(function(){
+    x = x + 1
+    document.getElementById('div').innerHTML += 'loop number ' + x + '<br>'
+  }, y)
+}   
 </script>
 </body>
 </html>
