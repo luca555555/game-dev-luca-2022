@@ -10,20 +10,23 @@
     <center>
     <h1>variables</h1>
     <h3>Luca</h3>
-    
     <hr>
     
-    <input id="mytext01" type="text" value="ss"><br>
-    
-    <input type="button" value="using useless var" onclick="{
-                                              let myin01 = document.getElementById('mytext01').value
-                                              myin01 = document.getElementById('mydiv01').innerHTML = myin01
-                                              }">
-    
-    <input type="button" value="no var" onclick="{
-                                              document.getElementById('mydiv01').innerHTML = document.getElementById('mytext01').value
-                                              }">
-    <div id="mydiv01">...</div>
-      </center>
+    <input id="txt" type="text" placeholder="Place holder"><br>
+    <button class="button button001" onclick="{x()}">With var</button>
+    <button class="button button001" onclick="{y()}">No var</button>
+    <div id="div">...</div>
+    </center>
+
+    <script>
+      function x() {
+        let sad = document.getElementById('txt').value
+        sad = document.getElementById('div').innerHTML = sad
+      }
+
+      function y() {
+        document.getElementById('div').innerHTML = document.getElementById('txt').value
+      }
+    </script>
   </body>
 </html>
