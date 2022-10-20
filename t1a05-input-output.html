@@ -11,14 +11,15 @@
       <h1>Input/output</h1>
       <h3>Luca </h3>
       <hr>
-        <input id="mynum01" type="number" value="69"><br>
-        <input id="mynum02" type="number" value="420"><br>
+        <input id="mynum01" type="number" value="420"><br>
+        <input id="mynum02" type="number" value="69"><br>
         
-        <button class="button button001" style="padding: 10px 20px;" onclick="{y()}">add</button>
-        <button class="button button001" style="padding: 10px 20px;" onclick="{z()}">subtract</button>
-        <button class="button button001" style="padding: 10px 20px;" onclick="{z()}">multiply</button>
-        <button class="button button001" style="padding: 10px 20px;" onclick="{z()}">devide</button>
-        <button class="button button001" style="padding: 10px 20px;" onclick="{x()}">Square</button>
+        <button class="button button001" style="padding: 10px 20px;" onclick="{add()}">add</button>
+        <button class="button button001" style="padding: 10px 20px;" onclick="{badd()}">bad add</button>
+        <button class="button button001" style="padding: 10px 20px;" onclick="{sub()}">subtract</button>
+        <button class="button button001" style="padding: 10px 20px;" onclick="{mul()}">multiply</button>
+        <button class="button button001" style="padding: 10px 20px;" onclick="{div()}">devide</button>
+        <button class="button button001" style="padding: 10px 20px;" onclick="{square()}">Square</button>
         
         
         <div id="mydiv01">...</div>
@@ -26,7 +27,10 @@
         <p><a href="index.html">Back to index</a></p>
       </center>
       <script>
-        function x() {
+        a = 0
+        b = 0
+
+        function square() {
           let mytemp = parseFloat(document.getElementById('mynum01').value)
           let answer01 = mytemp * mytemp
           document.getElementById('mydiv01').innerHTML = 
@@ -38,9 +42,44 @@
             mytemp01 + ' squared = ' + answer02
         }
         
-        function y() {
-          let mytemp04 = parseFloat(document.getElementById('mynum01').value)
-          let mytemp03 = parseFloat(document.getElementById('mynum02').value)
+        function badd() {
+        b = document.getElementById('mynum02').value
+        a = document.getElementById('mynum01').value
+
+        a = document.getElementById('mydiv01').innerHTML = a + ' + ' +  b + ' = ' + a + b
+        a = document.getElementById('mydiv02').innerHTML = '...'
+        }
+
+        function add() {
+        b = document.getElementById('mynum02').value
+        a = document.getElementById('mynum01').value
+
+        document.getElementById('mydiv01').innerHTML =  a + ' + ' +  b + ' = ' +  (parseInt(a) + parseInt(b))
+        a = document.getElementById('mydiv02').innerHTML = '...'
+        }
+
+        function sub() {
+        b = document.getElementById('mynum02').value
+        a = document.getElementById('mynum01').value
+
+        document.getElementById('mydiv01').innerHTML =  a + ' - ' +  b + ' = ' +  (parseInt(a) - parseInt(b))
+        a = document.getElementById('mydiv02').innerHTML = '...'
+        }
+
+        function mul() {
+        b = document.getElementById('mynum02').value
+        a = document.getElementById('mynum01').value
+
+        document.getElementById('mydiv01').innerHTML =  a + ' * ' +  b + ' = ' +  (parseInt(a) * parseInt(b))
+        a = document.getElementById('mydiv02').innerHTML = '...'
+        }
+
+        function div() {
+        b = document.getElementById('mynum02').value
+        a = document.getElementById('mynum01').value
+
+        document.getElementById('mydiv01').innerHTML =  a + ' / ' +  b + ' = ' +  (parseInt(a) / parseInt(b))
+        a = document.getElementById('mydiv02').innerHTML = '...'
         }
         
         function z() {
