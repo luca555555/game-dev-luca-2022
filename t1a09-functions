@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Luca | Function</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+    </head>
+    <body>
+        <center>
+        <h1>Functions</h1>
+        <h3>Luca</h3>
+        <hr>
+        <input id="txt" type="text" placeholder="Your text here"> <br>
+        <button class="button button001" onclick="{x()}">Basic function</button>
+        <button class="button button001" onclick="{y()}">Add stuff function</button>
+        <div id="div">...</div>
+        </center>
+        <script>
+            function x() {
+                document.getElementById('div').innerHTML = document.getElementById('txt').value
+            }
+
+            function y() {
+                document.getElementById('txt').value = document.getElementById('txt').value + 'stuff'
+                document.getElementById('div').innerHTML = document.getElementById('txt').value
+            }
+        </script>
+    </body>
+</html>
