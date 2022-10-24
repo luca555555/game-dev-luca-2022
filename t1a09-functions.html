@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Luca | Function</title>
+        <title id="sad">Luca | Function</title>
         <link rel="stylesheet" href="main.css" type="text/css">
     </head>
     <body>
@@ -10,8 +10,10 @@
         <h3>Luca</h3>
         <hr>
         <input id="txt" type="text" placeholder="Your text here"> <br>
-        <button class="button button001" onclick="{x()}">Basic function</button>
-        <button class="button button001" onclick="{y()}">Add stuff function</button>
+        <button class="button button003" onclick="{x()}">Basic function</button>
+        <button class="button button003" onclick="{y()}">Add stuff function</button>
+        <button class="button button003" onclick="{z()}">Change tab name</button>
+        <button class="button button003" onclick="{document.getElementById('div').innerHTML = b(69, 420); b()}">proper ig</button>
         <div id="div">...</div>
         </center>
         <script>
@@ -20,9 +22,17 @@
             }
 
             function y() {
-                document.getElementById('txt').value = document.getElementById('txt').value + 'stuff'
-                document.getElementById('div').innerHTML = document.getElementById('txt').value
+                document.getElementById('div').innerHTML = document.getElementById('txt').value += ' Stuff'
             }
+
+            function z() {
+              document.getElementById('sad').innerHTML = document.getElementById('txt').value
+            }
+
+            function b(p1, p2) {
+              return p1 + p2
+            }
+            
         </script>
     </body>
 </html>
