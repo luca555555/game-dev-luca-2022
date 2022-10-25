@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title id="sad">Luca | Events</title>
+        <title id="sad">Luca | Function</title>
         <link rel="stylesheet" href="main.css" type="text/css">
     </head>
     <body onscroll="x()" onresize="x()" onunload="x2()" onkeydown="xd()">
@@ -63,10 +63,12 @@
 
             function x3() {
                 disx = Number(localStorage.str)
-                if (disx > 9) {
+                if (disx > 10 || disx == 10) {
                     document.getElementById('result').innerHTML = 'You have reloaded the page ' + disx + ' times <br> You should stop'
-                } else {
+                } else if (disx < 10) {
                     document.getElementById('result').innerHTML = 'You have reloaded the page ' + disx + ' times'
+                } else {
+                    document.getElementById('result').innerHTML = 'Error :('
                 }
                 
             }
