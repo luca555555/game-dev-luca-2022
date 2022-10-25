@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="sad">Luca | Events</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+    </head>
+    <body onscroll="x()" onresize="x()" onunload="x2()" onkeydown="xd()">
+        <center>
+            <h1>Events</h1>
+            <h3>Luca</h3>
+            <hr>
+
+            <div id="resultz">...</div>
+            <input onfocus="y()" onblur="z()" id="txt" type="text" value="txt" placeholder="Text here"><br>
+            <button onclick="x()" class="button button003">Onclick</button>
+            <button ondblclick="x()" class="button button003">ondblclick</button>
+            <button onmouseover="x()" class="button button003">onmouseover</button>
+            <button onmousemove="x()" class="button button003">onmousemove</button>
+            <button onclick="x3()" class="button button003">onunload/load</button>
+            <details>
+                <p>onscroll</p>
+                <p>onresize</p>
+                <p>onkeydown (not in textbox)</p>
+                <summary>
+                    More stuff to try
+                </summary>
+            </details><br>
+            <div id="result">...</div><br><br>
+            <a href="index.html">Back to index</a>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div> </div>
+        </center>
+
+        <script>
+            dis = 1
+            disx = 0
+            function x() {
+                document.getElementById('result').innerHTML = document.getElementById('txt').value
+                document.getElementById('txt').value += ' x'
+            }
+
+            function xd() {
+                if (dis == 1) {
+                document.getElementById('result').innerHTML = document.getElementById('txt').value
+                document.getElementById('txt').value += ' x'
+                }
+            }
+
+            function y() {
+                document.getElementById('resultz').innerHTML = 'focused'
+                dis = 2
+            }
+
+            function z() {
+                document.getElementById('resultz').innerHTML = 'blured'
+                dis = 1
+            }
+
+            function x2() {
+                disx = disx + 1
+                localStorage.setItem('str', disx)
+            }
+
+            function x3() {
+                disx = Number(localStorage.str)
+                if (disx > 9) {
+                    document.getElementById('result').innerHTML = 'You have reloaded the page ' + disx + ' times <br> You should stop'
+                } else {
+                    document.getElementById('result').innerHTML = 'You have reloaded the page ' + disx + ' times'
+                }
+                
+            }
+        </script>
+    </body>
+</html>
