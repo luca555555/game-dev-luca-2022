@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="sad">Luca | Arrays</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+    </head>
+    <body>
+        <center>
+            <h1>Arrays</h1>
+            <h3>Luca</h3>
+            <hr>
+            <input type="text" value="11" id="txt" placeholder="Number to show">
+            <input type="text" value="" id="txt2" placeholder="New item"><br>
+            <button class="button button003" onclick="{sa()}">Show Array</button>
+            <button class="button button003" onclick="{df()}">Define next item</button>
+            <div id="div">...</div>
+        </center>
+        <script>
+            const ar = ["Your", "array", "example", "sucks"];
+
+            function sa() {
+                let temp = document.getElementById('txt').value
+                let sum = ''
+
+                for (let i = 0; i < temp; i++) {
+                    sum += 'Array ' + i + ' = ' + ar[i] + '<br>'
+                }
+                document.getElementById('div').innerHTML = sum
+            }
+
+            function df() {
+                let temp2 = document.getElementById('txt2').value
+                ar.push(temp2);
+                sa()
+            }
+        </script>
+    </body>
+</html>
