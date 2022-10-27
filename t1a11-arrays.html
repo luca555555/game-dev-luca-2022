@@ -9,15 +9,20 @@
             <h1>Arrays</h1>
             <h3>Luca</h3>
             <hr>
-            <input type="text" value="11" id="txt" placeholder="Number to show">
+            <input type="text" value="3" id="txt" placeholder="Number to show">
             <input type="text" value="" id="txt2" placeholder="New item"><br>
             <button class="button button003" onclick="{sa()}">Show Array</button>
-            <button class="button button003" onclick="{df()}">Define next item</button><br>
-            <a href="index.html">Back to index</a>
+            <button class="button button003" onclick="{df()}">Define next item</button>
+
+            <details>
+                <summary>More options</summary>
+                <button class="button button003" onclick="{two()}">2d array</button>
+            </details>
             <div id="div">...</div>
         </center>
         <script>
             const ar = ["Your", "array", "example", "sucks"];
+            let ar2 = [ [1, 2], [3, 4], [5, 6] ];
 
             function sa() {
                 let temp = document.getElementById('txt').value
@@ -33,6 +38,20 @@
                 let temp2 = document.getElementById('txt2').value
                 ar.push(temp2);
                 sa()
+            }
+
+            function two() {
+                let temp = document.getElementById('txt').value
+                let sum = ''
+                
+                console.log(ar2[0][0]); // 1
+                console.log(ar2);
+
+                for (let i = 0; i < temp; i++) {
+                    ar2[0][0] = 1
+                    sum += ar2 + 'X'
+                }
+                document.getElementById('div').innerHTML = sum
             }
         </script>
     </body>
