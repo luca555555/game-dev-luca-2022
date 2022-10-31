@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="sad">Luca | Objects</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+    </head>
+    <body>
+        <center>
+            <h1>Objects</h1>
+            <h3>Luca</h3>
+            <hr>
+            <button onclick="{x()}" class="button button003">Print</button><br>
+
+            <textarea id="area" rows="7" cols="50" wrap="false">
+            {
+                "name01": "John",
+                "name02": "Doe",
+                "age": 77
+             }
+            </textarea><br>
+            
+            <div id="div">XXX</div><br>
+            <a href="index.html">Back to index</a>
+        </center>
+        <script>
+            function x() {
+                    var person = {}
+                    person = JSON.parse(document.getElementById('area').value)
+                    document.getElementById('div').innerHTML = 'Name: ' + person.name01 + 
+                    '<br>' + 'Last name: ' + person.name02 +
+                    '<br>' + 'Age: ' + person.age
+            }
+
+            function y() {
+                document.getElementById('area').value = '55'
+            }
+        </script>
+    </body>
+</html>
