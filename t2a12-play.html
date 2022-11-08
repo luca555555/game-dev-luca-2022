@@ -1,1 +1,32 @@
-xxxxxx
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="sad">Luca | Classes</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+    </head>
+    <body>
+        <center>
+            <h1>Pay</h1>
+            <h3>Luca</h3>
+            <hr>
+            <input id="x1" type="number" placeholder="salary" value="1500">
+            <input id="x2" type="number" placeholder="hours" value="8">
+            <input id="x3" type="number" placeholder="tax" value="30"><br>
+            <button onclick="{calculate()}">XXXX</button>
+            <div id="wo">Without</div>
+            <div id="w">with</div>
+            <script>
+                function calculate() {
+                    temp1 = document.getElementById('x1').value
+                    temp2 = document.getElementById('x2').value
+                    temp3 = document.getElementById('x3').value
+
+                    temp4 = temp1 * temp2
+                    temp5 = temp1 * temp2 / temp3
+                    document.getElementById('wo').innerHTML = 'Without tax: ' + temp4
+                    document.getElementById('w').innerHTML = 'with tax: ' + temp5
+                }
+                //vars objects
+            </script> 
+    </body>
+</html>
