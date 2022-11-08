@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="sad">Luca | Classes</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+    </head>
+    <body>
+        <center>
+            <h1>Classes</h1>
+            <h3>Luca</h3>
+            <hr>
+            <button onclick="{x()}">Sad</button>
+            <div id="div">...</div>
+            <script>
+                function x() {
+                class ani {
+                    constructor(passName, passAge){
+                        this.myName = passName;
+                        this.myage = passAge;
+                    }
+                    myshow() {
+                        document.getElementById('div').innerHTML = this.myName + '<br>' + this.myage + ''
+                    }
+                }
+                myDog = new ani('slap', 6)
+                myDog.myshow()
+            }
+            </script>
+    </body>
+</html>
