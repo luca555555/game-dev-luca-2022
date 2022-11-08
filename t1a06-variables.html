@@ -5,6 +5,15 @@
     <title>Luca | variables</title>
     <link rel="stylesheet" href="main.css" type="text/css">
     <link rel="icon" href="images/7.png" type="x-icon/image">
+    <style>
+        #x1 {animation: ani 2s}
+
+        @keyframes ani {
+            0% {left:500px; top: 300px;}
+            50% {left:500px; top: 200px;}
+            100% {left:500px; top: 300px;}
+        }
+    </style>
   </head>
   <body>
     <center>
@@ -13,8 +22,11 @@
     <hr>
     
     <input id="txt" type="text" placeholder="Place holder"><br>
-    <button class="button button001" onclick="{x()}">With var</button>
-    <button class="button button001" onclick="{y()}">No var</button>
+    <button id="x01" class="button button001" onclick="{x(); x2()}" style="position:fixed; left:500px; top: 300px;">With var</button>
+    <button id="x02" class="button button001" onclick="{y(); y2();}" style="position:fixed; left:630px; top: 300px;" >No var</button>
+    <button id="x03" class="button button001" onclick="{z(); z2();}" style="position:fixed; left:750px; top: 300px;">Use const</button>
+    <button id="x04" class="button button001" onclick="{d(); d2();}" style="position:fixed; left:890px; top: 300px;">Use let</button>
+
     <div id="div">...</div>
     </center>
 
@@ -22,11 +34,48 @@
       function x() {
         let sad = document.getElementById('txt').value
         sad = document.getElementById('div').innerHTML = sad
+        sad = sad + ' X'
+        document.getElementById('txt').value = sad
       }
 
       function y() {
         document.getElementById('div').innerHTML = document.getElementById('txt').value
+        document.getElementById('txt').value = document.getElementById('txt').value + ' X'
       }
+
+      function z() {
+        const flap = document.getElementById('txt').value
+        document.getElementById('div').innerHTML = flap
+        document.getElementById('txt').value = document.getElementById('txt').value + ' X' 
+      }
+
+      function d() {
+        let flapz = document.getElementById('txt').value
+        document.getElementById('div').innerHTML = flapz
+        document.getElementById('txt').value = document.getElementById('txt').value + ' X'
+      }
+
+      //animation shit
+
+
+      flub = 1
+            function x2() {
+                if (flub == 1) {
+                    chng()
+                } else if (flub == 2){
+                    chng2()
+                }
+            }
+
+            function chng() {
+                document.getElementById('x01').id = 'x1'
+                flub = 2
+            }
+
+            function chng2() {
+                document.getElementById('x1').id = 'x01'
+                flub = 1
+            }
     </script>
   </body>
 </html>
