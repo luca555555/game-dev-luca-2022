@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="sad">Luca | Classes</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+    </head>
+    <body>
+        <center>
+            <h1>t2a06 | spy</h1>
+            <h3>Luca</h3>
+            
+            <textarea id="myArea01" rows=4 cols=70>I want to die</textarea><br> 
+
+            <button class="button003" onclick="{en()}">Encrypt</button><br><br>
+            
+            <textarea id="myArea02" rows=4 cols=70></textarea><br> 
+            
+            <button class="button003" onclick="{de()}">Decrypt</button><br><br>
+            
+            <textarea id="myArea03" rows=4 cols=70></textarea><br>
+        </center>
+
+<script>
+    function en() {
+        let myTemp = ''
+        myString = document.getElementById('myArea01').value.toLowerCase().split('')
+        for (let myLoop=0;   myLoop < myString.length; myLoop++){
+            myTemp = myString[myLoop]
+            if (myString[myLoop] == 'a') {myTemp  = '1'} 
+            if (myString[myLoop] == 'b') {myTemp  = 'p'}
+            if (myString[myLoop] == 'c') {myTemp  = 'h'}
+            if (myString[myLoop] == 'd') {myTemp  = 'i'}
+            if (myString[myLoop] == 'e') {myTemp  = '.'}
+            if (myString[myLoop] == 'f') {myTemp  = 'g'}
+            if (myString[myLoop] == 'g') {myTemp  = ' '}
+            if (myString[myLoop] == 'h') {myTemp  = 'n'}
+            if (myString[myLoop] == 'i') {myTemp  = 'k'}
+            if (myString[myLoop] == 'j') {myTemp  = 'l'}
+            if (myString[myLoop] == 'k') {myTemp  = 'j'}
+            if (myString[myLoop] == 'l') {myTemp  = 'z'}
+            if (myString[myLoop] == 'm') {myTemp  = 'o'}
+            if (myString[myLoop] == 'n') {myTemp  = '4'}
+            if (myString[myLoop] == 'o') {myTemp  = 'm'}
+            if (myString[myLoop] == 'p') {myTemp  = 'y'}
+            if (myString[myLoop] == 'q') {myTemp  = 'c'}
+            if (myString[myLoop] == 'r') {myTemp  = 'd'}
+            if (myString[myLoop] == 's') {myTemp  = '6'}
+            if (myString[myLoop] == 't') {myTemp  = '7'}
+            if (myString[myLoop] == 'u') {myTemp  = 'x'}
+            if (myString[myLoop] == 'v') {myTemp  = 's'}
+            if (myString[myLoop] == 'w') {myTemp  = 't'}
+            if (myString[myLoop] == 'x') {myTemp  = '8'}
+            if (myString[myLoop] == 'y') {myTemp  = '9'}
+            if (myString[myLoop] == 'z') {myTemp  = ','}
+
+            if (myString[myLoop] == ' ') {myTemp  = 'e'}
+            if (myString[myLoop] == '.') {myTemp  = '5'}
+            if (myString[myLoop] == ',') {myTemp  = 'w'}
+
+            if (myString[myLoop] == '1') {myTemp  = '2'}
+            if (myString[myLoop] == '2') {myTemp  = 'b'}
+            if (myString[myLoop] == '3') {myTemp  = 'u'}
+            if (myString[myLoop] == '4') {myTemp  = 'f'}
+            if (myString[myLoop] == '5') {myTemp  = '3'}
+            if (myString[myLoop] == '6') {myTemp  = 'q'}
+            if (myString[myLoop] == '7') {myTemp  = 'v'}
+            if (myString[myLoop] == '8') {myTemp  = 'r'}
+            if (myString[myLoop] == '9') {myTemp  = 'a'}
+            myString[myLoop] = myTemp
+        }
+        document.getElementById('myArea02').value = myString.join('')
+    }
+
+    function de() {
+        let myTemp = ''
+        myString = document.getElementById('myArea02').value.toLowerCase().split('')
+        for (let myLoop=0;   myLoop < myString.length; myLoop++){
+            myTemp = myString[myLoop]
+            if (myString[myLoop] == '1') {myTemp  = 'a'} 
+            if (myString[myLoop] == 'p') {myTemp  = 'b'}
+            if (myString[myLoop] == 'h') {myTemp  = 'c'}
+            if (myString[myLoop] == 'i') {myTemp  = 'd'}
+            if (myString[myLoop] == '.') {myTemp  = 'e'}
+            if (myString[myLoop] == 'g') {myTemp  = 'f'}
+            if (myString[myLoop] == ' ') {myTemp  = 'g'}
+            if (myString[myLoop] == 'n') {myTemp  = 'h'}
+            if (myString[myLoop] == 'k') {myTemp  = 'i'}
+            if (myString[myLoop] == 'l') {myTemp  = 'j'}
+            if (myString[myLoop] == 'j') {myTemp  = 'k'}
+            if (myString[myLoop] == 'z') {myTemp  = 'l'}
+            if (myString[myLoop] == 'o') {myTemp  = 'm'}
+            if (myString[myLoop] == '4') {myTemp  = 'n'}
+            if (myString[myLoop] == 'm') {myTemp  = 'o'}
+            if (myString[myLoop] == 'y') {myTemp  = 'p'}
+            if (myString[myLoop] == 'c') {myTemp  = 'q'}
+            if (myString[myLoop] == 'd') {myTemp  = 'r'}
+            if (myString[myLoop] == '6') {myTemp  = 's'}
+            if (myString[myLoop] == '7') {myTemp  = 't'}
+            if (myString[myLoop] == 'x') {myTemp  = 'u'}
+            if (myString[myLoop] == 's') {myTemp  = 'v'}
+            if (myString[myLoop] == 't') {myTemp  = 'w'}
+            if (myString[myLoop] == '8') {myTemp  = 'x'}
+            if (myString[myLoop] == '9') {myTemp  = 'y'}
+            if (myString[myLoop] == 'w') {myTemp  = ','}
+
+            if (myString[myLoop] == 'e') {myTemp  = ' '}
+            if (myString[myLoop] == '5') {myTemp  = '.'}
+            if (myString[myLoop] == ',') {myTemp  = 'w'}
+
+            if (myString[myLoop] == '2') {myTemp  = '1'}
+            if (myString[myLoop] == 'b') {myTemp  = '2'}
+            if (myString[myLoop] == 'u') {myTemp  = '3'}
+            if (myString[myLoop] == 'f') {myTemp  = '4'}
+            if (myString[myLoop] == '3') {myTemp  = '5'}
+            if (myString[myLoop] == 'q') {myTemp  = '6'}
+            if (myString[myLoop] == 'v') {myTemp  = '7'}
+            if (myString[myLoop] == 'r') {myTemp  = '8'}
+            if (myString[myLoop] == 'a') {myTemp  = '9'}
+            myString[myLoop] = myTemp
+        }
+        document.getElementById('myArea03').value = myString.join('')
+    }
+</script>
+    </body>
+</html>
