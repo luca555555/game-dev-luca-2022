@@ -282,6 +282,6 @@ document.addEventListener("keyup", function(e) {
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == 16) {
     alert('Block hight: ' + slash + '\nOther: ' + '\nOther: ')
-    document.getElementById('player01').src = 'img/Drawing02.png'
+    document.getElementById('player01').src = 'images/Drawing02.png'
   };
 });
