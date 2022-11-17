@@ -268,4 +268,4 @@ document.addEventListener("keydown", function(e) {
     alert('Hight: ' + slash + '\nsl: ' + '\nx')
     
   };
-});
+}); 
