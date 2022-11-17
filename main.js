@@ -239,12 +239,26 @@ speed = 5
    }, speed)
  }
 
+ function srt4() {
+  clearInterval(clock4)
+  clock4 = setInterval(function(){
+    if (jump == 1) {
+      document.getElementById('player01').src = 'img/Drawing02.png'
+    }
+
+    if (jump == 2) {
+      document.getElementById('player01').src = 'img/Drawing.png'
+    }
+  }, 500)
+  }
+
 
 //Controles && Movement
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == 32) {
     console.log(jump)
     if (jump == 2) {
+      document.getElementById('player01').src = 'img/Drawing02.png'
     document.getElementById('player01').style.top = parseInt(document.getElementById('player01').style.top) + -300 + 'px'
     }
   };
@@ -252,12 +266,14 @@ document.addEventListener("keydown", function(e) {
 
 document.addEventListener("keyup", function(e) {
   if (e.keyCode == 65) {
+   document.getElementById('player01').src = 'img/Drawing04.png'
    document.getElementById('player01').style.left = parseInt(document.getElementById('player01').style.left) + -100 + 'px'
   };
 });
 
 document.addEventListener("keyup", function(e) {
   if (e.keyCode == 68) {
+    document.getElementById('player01').src = 'img/Drawing03.png'
    document.getElementById('player01').style.left = parseInt(document.getElementById('player01').style.left) + 100 + 'px'
   };
 });
@@ -265,7 +281,7 @@ document.addEventListener("keyup", function(e) {
 
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == 16) {
-    alert('Hight: ' + slash + '\nsl: ' + '\nx')
-    
+    alert('Block hight: ' + slash + '\nOther: ' + '\nOther: ')
+    document.getElementById('player01').src = 'img/Drawing02.png'
   };
-}); 
+});
