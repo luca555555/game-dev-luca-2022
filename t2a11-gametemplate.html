@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>ReqD</title>
+        <link rel="stylesheet" href="main.css" type="text/css">
+        <script src="main.js"></script>
+        <style>
+            body {
+                overflow-y: hidden;
+                overflow-x: hidden;
+            }
+        </style>
+    </head>
+
+<body onload="srt(); srt2(); srt3();">
+
+    <div id="score" style="border-radius: 10%; width: 100px; height: 30px; background-color: white; color: black; position: absolute; top: 5px; left: 1400px; text-align: center; font-family: cursive;">0</div>
+    <img id="player01" src="img/Drawing.png" style="border-radius: 10%; width: 100px; height: 100px; background-color: white; position: absolute; top: 0px; left: 75px;">
+    <div id="floor01" style="width: 1700px; height: 60px; background-color: rgb(53, 49, 49); position: absolute; top: 700px; left: 0px; z-index: 99;"></div>
+    <div id="die" style="width: 20px; height: 700px; background-color: rgb(255, 0, 0); position: absolute; top: 0px; left: 0px;"></div>
+    <div id="alsodie" style="width: 20px; height: 700px; background-color: rgb(255, 0, 0); position: absolute; top: 0px; left: 1535px;"></div>
+
+    <div id="dick" style="z-index: 100; text-align: center; width: 1700px; height: 700px; background-color: rgb(0, 0, 0); position: absolute; top: 700px; left: 0px;"><a id="l2" style="color:white; opacity: 0%;" href="a">Level 2</a></div>
+
+    <div id="floor02" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 50px;"></div> <!--position-->
+    <div id="Lwall01" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 50px;"></div> <!--same as floor-->
+    <div id="Rwall01" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 198px;"></div> <!--floor + 150 - 2-->
+
+    <div id="floor03" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 350px;"></div>
+    <div id="Lwall02" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 350px;"></div>
+    <div id="Rwall02" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 498px;"></div>
+
+    <div id="floor04" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 650px;"></div>
+    <div id="Lwall03" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 650px;"></div>
+    <div id="Rwall03" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 798px;"></div>
+
+    <div id="floor05" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 950px;"></div>
+    <div id="Lwall04" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 950px;"></div>
+    <div id="Rwall04" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 998px;"></div>
+</body>
+</html>
