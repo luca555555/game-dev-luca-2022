@@ -9,6 +9,7 @@
             body {
                 overflow-y: hidden;
                 overflow-x: hidden;
+                background-image: url('images/sky.png');
             }
         </style>
     </head>
@@ -18,25 +19,39 @@
     <div id="score" style="border-radius: 10%; width: 100px; height: 30px; background-color: white; color: black; position: absolute; top: 5px; left: 1400px; text-align: center; font-family: cursive;">0</div>
     <img id="player01" src="images/Drawing.png" style="border-radius: 10%; width: 100px; height: 100px; background-color: white; position: absolute; top: 0px; left: 75px;">
     <div id="floor01" style="width: 1700px; height: 60px; background-color: rgb(53, 49, 49); position: absolute; top: 700px; left: 0px; z-index: 99;"></div>
-    <div id="die" style="width: 20px; height: 700px; background-color: rgb(255, 0, 0); position: absolute; top: 0px; left: 0px;"></div>
-    <div id="alsodie" style="width: 20px; height: 700px; background-color: rgb(255, 0, 0); position: absolute; top: 0px; left: 1535px;"></div>
+    <div id="die" style="opacity: 0%; width: 20px; height: 700px; background-color: rgb(255, 0, 0); position: absolute; top: 0px; left: 0px;"></div>
+    <div id="alsodie" style="opacity: 0%; width: 20px; height: 700px; background-color: rgb(255, 0, 0); position: absolute; top: 0px; left: 1535px;"></div>
+
+    <!--pictures-->
+    <img id="" src="images/border02.png" style="border-radius: 10%; width: 250px; height: 300px; position: absolute; top: 0px; left: 1500px;">
+    <img id="" src="images/border02.png" style="border-radius: 10%; width: 250px; height: 300px; position: absolute; top: 250px; left: 1500px;">
+    <img id="" src="images/border02.png" style="border-radius: 10%; width: 250px; height: 300px; position: absolute; top: 500px; left: 1500px;">
+
+    <img id="" src="images/border01.png" style="border-radius: 10%; width: 250px; height: 300px; position: absolute; top: 0px; left: -180px;">
+    <img id="" src="images/border01.png" style="border-radius: 10%; width: 250px; height: 300px; position: absolute; top: 250px; left: -180px;">
+    <img id="" src="images/border01.png" style="border-radius: 10%; width: 250px; height: 300px; position: absolute; top: 500px; left: -180px;">
+
+    <img id="" src="images/ground.png" style="width: 1700px; height: 200px; background-color: rgb(53, 49, 49); position: absolute; top: 700px; left: 0px; z-index: 109;">
 
     <div id="dick" style="z-index: 100; text-align: center; width: 1700px; height: 700px; background-color: rgb(0, 0, 0); position: absolute; top: 700px; left: 0px;"><a id="l2" style="color:white; opacity: 0%;" href="a">Level 2</a></div>
 
-    <div id="floor02" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 50px;"></div> <!--position-->
-    <div id="Lwall01" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 50px;"></div> <!--same as floor-->
-    <div id="Rwall01" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 198px;"></div> <!--floor + 150 - 2-->
 
-    <div id="floor03" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 350px;"></div>
+    
+    <img src="images/pillar.png" id="floor02" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 50px;">
+    <div id="Lwall01" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 50px;"></div>
+    <div id="Rwall01" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 198px;"></div>
+
+    <img src="images/pillar.png" id="floor03" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 350px;">
     <div id="Lwall02" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 350px;"></div>
     <div id="Rwall02" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 498px;"></div>
 
-    <div id="floor04" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 650px;"></div>
+
+    <img src="images/pillar.png" id="floor04" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 650px;">
     <div id="Lwall03" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 650px;"></div>
     <div id="Rwall03" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 798px;"></div>
 
-    <div id="floor05" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 950px;"></div>
+    <img src="images/pillar.png" id="floor05" style="width: 150px; height: 200px; background-color: black; position: absolute; top: 500px; left: 950px;">
     <div id="Lwall04" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 950px;"></div>
-    <div id="Rwall04" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 998px;"></div>
+    <div id="Rwall04" style="width: 2px; height: 190px; background-color: rgb(0, 0, 0); position: absolute; top: 510px; left: 1098px;"></div>
 </body>
-</html> 
+</html>
