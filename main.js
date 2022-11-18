@@ -256,6 +256,7 @@ speed = 5
 
   let myGlobalX = 0
 
+  //WTF
   function srt5() {
     clearInterval(clock5)
     clock5 = setInterval(function(){
