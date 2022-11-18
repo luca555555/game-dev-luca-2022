@@ -5,6 +5,7 @@ onblk = 1
 pts = 0
 pts2 = 0
 
+
 //Check if divs are overlaping
 function myHitOther(my1,my2){
   left1   = parseInt(document.getElementById(my1).style.left)
