@@ -115,6 +115,7 @@ let clock1;
 let clock2;
 let clock3;
 let clock4;
+let clock5;
 
 
  function srt() { //Run mycheckhit
@@ -251,6 +252,18 @@ speed = 5
     }
   }, 500)
   }
+
+  let myGlobalX = 0
+
+  function srt5() {
+    clearInterval(clock5)
+    clock5 = setInterval(function(){
+      myTemp = '100px 0px'
+      myGlobalX -= 5
+      myTemp =  myGlobalX + 'px 0px'
+      document.getElementById('myBody').style.backgroundPosition = myTemp
+    }, 15)
+    }
 
 
 //Controles && Movement
