@@ -9,9 +9,83 @@
   <button class="button button001" onclick="{x()}">...</button>
   
   <script>
-    function x() {
-      alert('hdfgfd')
-    }
+    //Hello world!
+
+let player = ''
+
+x1 = 10
+x2 = 10
+x3 = 80
+x4 = 80
+
+y1 = 0
+y2 = 0
+y3 = 0
+y4 = 0
+
+function srt() {
+  var c = document.getElementById("board");
+  player = c.getContext("2d");
+
+  player.fillStyle = "gray";
+  player.fillRect(y1, y2, y3, y4 );
+
+  player.fillStyle = "blue";
+  player.fillRect(x1, x2, x3, x4 );
+
+  y1 = x1
+  y2 = x2
+  y3 = x3
+  y4 = x4
+  //alert(x1 + ' ' + x2 + ' ' + x3 + ' ' + x4)
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key == 'd' || e.key == 'D') {
+    console.log('Move right')
+    x1 = x1 + 10
+    x2 = x2
+    x3 = x3
+    x4 = x4
+    srt();
+  };
+
+  if (e.key == 'a' || e.key == 'A') {
+    console.log('Move left')
+    x1 = x1 + -10
+    x2 = x2
+    x3 = x3
+    x4 = x4
+    srt();
+  };
+
+  if (e.key == 'w' || e.key == 'W') {
+    console.log('Move up')
+    x1 = x1
+    x2 = x2 + -10
+    x3 = x3
+    x4 = x4
+    srt();
+  };
+
+  if (e.key == 's' || e.key == 'S') {
+    console.log('Move down')
+    x1 = x1
+    x2 = x2 + 10
+    x3 = x3
+    x4 = x4
+    srt();
+  };
+
+  if (e.key == 'f' || e.key == 'F') {
+    console.log('Invetory')
+  };
+
+  if (e.key == 'Shift') {
+    console.log('Dash')
+    alert(player)
+  };
+});
   </script>
 </body>
 </html>
