@@ -4,7 +4,7 @@
   <title>Duck</title>
   <link rel="stylesheet" href="main.css" type="text/css">
 </head>
-<body>
+<body onload="{srt();}" onclick="{shoot()};">
   
   <!--php sql database-->
   
@@ -13,19 +13,100 @@
   <script>
     //Hello world!
 
+    z1 = false
+    z2 = false
+    z3 = false
+    z4 = false
+
+
+    let clock
+
+    function srt() {
+        clearInterval(clock)
+        clock = setInterval(function(){
+            //console.log('clock tick')
+            if (z1 == true) {
+                x1 = x1 + 5
+                x2 = x2
+                x3 = x3
+                x4 = x4
+                srt2();
+            }
+
+            if (z2 == true) {
+                x1 = x1 - 5
+                x2 = x2
+                x3 = x3
+                x4 = x4
+                srt2();
+            }
+
+            if (z3 == true) {
+                x1 = x1
+                x2 = x2 - 5
+                x3 = x3
+                x4 = x4
+                srt2();
+            }
+
+            if (z4 == true) {
+                x1 = x1
+                x2 = x2 + 5
+                x3 = x3
+                x4 = x4
+                srt2();
+            }
+
+            //bullet logic
+
+        }, 1)
+    }
+
+    ar = []
+
+    snum = 0
+    smax = 4
+
+    s1 = 0
+    s2 = 0
+    s3 = 0
+    s4 = 0
+
+    function shoot() {
+        console.log('Shoot')
+        var c = document.getElementById("board");
+        s1 = x1 + 35
+        s2 = x2 + 35
+        s3 = 10
+        s4 = 10
+        bullet = c.getContext("2d");
+        bullet.fillStyle = "red";
+        bullet.fillRect(s1, s2, s3, s4);
+
+        ar.push(s1)
+        ar.push(s2)
+        ar.push(s3)
+        ar.push(s4)
+
+        snum = snum + 4
+        smax = smax + 4
+    }
+
 let player = ''
 
+// values
 x1 = 10
 x2 = 10
 x3 = 80
 x4 = 80
 
+// what to erase
 y1 = 0
 y2 = 0
 y3 = 0
 y4 = 0
 
-function srt() {
+function srt2() {
   var c = document.getElementById("board");
   player = c.getContext("2d");
 
@@ -44,48 +125,45 @@ function srt() {
 
 document.addEventListener("keydown", function(e) {
   if (e.key == 'd' || e.key == 'D') {
-    console.log('Move right')
-    x1 = x1 + 10
-    x2 = x2
-    x3 = x3
-    x4 = x4
-    srt();
+    //console.log('Move right')
+    z1 = true
   };
 
   if (e.key == 'a' || e.key == 'A') {
-    console.log('Move left')
-    x1 = x1 + -10
-    x2 = x2
-    x3 = x3
-    x4 = x4
-    srt();
+    //console.log('Move right')
+    z2 = true
   };
 
   if (e.key == 'w' || e.key == 'W') {
-    console.log('Move up')
-    x1 = x1
-    x2 = x2 + -10
-    x3 = x3
-    x4 = x4
-    srt();
+    //console.log('Move right')
+    z3 = true
   };
 
   if (e.key == 's' || e.key == 'S') {
-    console.log('Move down')
-    x1 = x1
-    x2 = x2 + 10
-    x3 = x3
-    x4 = x4
-    srt();
+    //console.log('Move right')
+    z4 = true
+  };
+});
+
+document.addEventListener("keyup", function(e) {
+  if (e.key == 'd' || e.key == 'D') {
+    //console.log('Stop move right')
+    z1 = false
   };
 
-  if (e.key == 'f' || e.key == 'F') {
-    console.log('Invetory')
+  if (e.key == 'a' || e.key == 'A') {
+    //console.log('Stop move right')
+    z2 = false
   };
 
-  if (e.key == 'Shift') {
-    console.log('Dash')
-    alert(player)
+  if (e.key == 'w' || e.key == 'W') {
+    //console.log('Stop sove right')
+    z3 = false
+  };
+
+  if (e.key == 's' || e.key == 'S') {
+    //console.log('Stop move right')
+    z4 = false
   };
 });
   </script>
