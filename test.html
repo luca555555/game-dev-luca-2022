@@ -2,170 +2,149 @@
 <html> 
 <head>
   <title>Duck</title>
-  <link rel="stylesheet" href="main.css" type="text/css">
-</head>
-<body onload="{srt();}" onclick="{shoot()};">
-  
-  <!--php sql database-->
-  
-  <canvas id="board" width="1700" height="805" style="border:5px solid black;"></canvas>
-  
-  <script>
-    //Hello world!
-
-    z1 = false
-    z2 = false
-    z3 = false
-    z4 = false
-
-
-    let clock
-
-    function srt() {
-        clearInterval(clock)
-        clock = setInterval(function(){
-            //console.log('clock tick')
-            if (z1 == true) {
-                x1 = x1 + 5
-                x2 = x2
-                x3 = x3
-                x4 = x4
-                srt2();
-            }
-
-            if (z2 == true) {
-                x1 = x1 - 5
-                x2 = x2
-                x3 = x3
-                x4 = x4
-                srt2();
-            }
-
-            if (z3 == true) {
-                x1 = x1
-                x2 = x2 - 5
-                x3 = x3
-                x4 = x4
-                srt2();
-            }
-
-            if (z4 == true) {
-                x1 = x1
-                x2 = x2 + 5
-                x3 = x3
-                x4 = x4
-                srt2();
-            }
-
-            //bullet logic
-
-        }, 1)
-    }
-
-    ar = []
-
-    snum = 0
-    smax = 4
-
-    s1 = 0
-    s2 = 0
-    s3 = 0
-    s4 = 0
-
-    function shoot() {
-        console.log('Shoot')
-        var c = document.getElementById("board");
-        s1 = x1 + 35
-        s2 = x2 + 35
-        s3 = 10
-        s4 = 10
-        bullet = c.getContext("2d");
-        bullet.fillStyle = "red";
-        bullet.fillRect(s1, s2, s3, s4);
-
-        ar.push(s1)
-        ar.push(s2)
-        ar.push(s3)
-        ar.push(s4)
-
-        snum = snum + 4
-        smax = smax + 4
-    }
-
-let player = ''
-
-// values
-x1 = 10
-x2 = 10
-x3 = 80
-x4 = 80
-
-// what to erase
-y1 = 0
-y2 = 0
-y3 = 0
-y4 = 0
-
-function srt2() {
-  var c = document.getElementById("board");
-  player = c.getContext("2d");
-
-  player.fillStyle = "gray";
-  player.fillRect(y1, y2, y3, y4 );
-
-  player.fillStyle = "blue";
-  player.fillRect(x1, x2, x3, x4 );
-
-  y1 = x1
-  y2 = x2
-  y3 = x3
-  y4 = x4
-  //alert(x1 + ' ' + x2 + ' ' + x3 + ' ' + x4)
+  <link rel="stylesheet" href="shooter.css" type="text/css">
+  <script src="shooter.js"></script>
+  <style>
+    html {
+    font-size: 22px;
 }
 
+body {
+    color: white;
+    background-color: grey;
+    overflow: hidden;
+}
+
+.genaric {
+    position:absolute;
+    height: 100px;
+    width: 100px;
+    top: 100px;
+    left: 100px;
+    background-color: black;
+}
+  </style>
+</head>
+<body onresize="{sz();}" onload="{sz(); szz(); srt();}">
+  
+  <!--php sql database-->
+
+  <img id="player" src="images/Drawing.png" style="width: 100px; height: 100px; position: absolute; top: 0px; left: 75px;">
+
+  <img id="death" src="" alt="Death cube" style=" background-color:crimson; width: 100px; height: 100px; position: absolute; top: 0px; left: 275px;">
+  <img id="" src="" alt="Save data" style=" background-color:beige; width: 100px; height: 100px; position: absolute; top: 0px; left: 375px;">
+
+  <img id="x" src="images/sky.png" style="z-index: -10; position: absolute; width: 100px; height: 100px; top: 0px; left: -100px;">
+  
+  <script>
+    function myHitOther(my1,my2){
+  left1   = parseInt(document.getElementById(my1).style.left)
+  right1  = left1 + parseInt(document.getElementById(my1).style.width)
+  top1    = parseInt(document.getElementById(my1).style.top)   
+  bottom1 = top1   + parseInt(document.getElementById(my1).style.height)
+  left2   = parseInt(document.getElementById(my2).style.left)
+  right2  = left2 + parseInt(document.getElementById(my2).style.width)
+  top2    = parseInt(document.getElementById(my2).style.top)   
+  bottom2 = top2   + parseInt(document.getElementById(my2).style.height)
+  if ((right1  >=  left2  ) &&      	   
+      (bottom1 >=  top2   ) &&
+      (left1   <=  right2 ) &&
+      (top1    <=  bottom2) ){
+      return true
+  }
+}
+
+
+function myCheckHit(){
+  if ( myHitOther('player','death') ){
+    console.log('touched')
+  }
+}
+
+
+
+//Move the player
+let clock
+
+function srt() {
+  clearInterval(clock)
+  clock = setInterval(function(){
+    if (move01 == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
+    }
+
+    if (move02 == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
+    }
+
+    if (move03 == true) {
+      document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 10 + 'px'
+    }
+
+    if (move04 == true) {
+      document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px'
+    }
+    myCheckHit()
+  }, 10)
+  }
+
+move01 = false //right
+move02 = false //left
+move03 = false //up
+move04 = false //down
+
+//detect when keys are pressed
 document.addEventListener("keydown", function(e) {
   if (e.key == 'd' || e.key == 'D') {
-    //console.log('Move right')
-    z1 = true
-  };
+    move01 = true
+    }
 
   if (e.key == 'a' || e.key == 'A') {
-    //console.log('Move right')
-    z2 = true
-  };
+    move02 = true
+    }
 
   if (e.key == 'w' || e.key == 'W') {
-    //console.log('Move right')
-    z3 = true
-  };
+    move03 = true
+    }
 
   if (e.key == 's' || e.key == 'S') {
-    //console.log('Move right')
-    z4 = true
-  };
+    move04 = true
+    }
 });
+
 
 document.addEventListener("keyup", function(e) {
   if (e.key == 'd' || e.key == 'D') {
-    //console.log('Stop move right')
-    z1 = false
-  };
+    move01 = false
+    }
 
   if (e.key == 'a' || e.key == 'A') {
-    //console.log('Stop move right')
-    z2 = false
-  };
+    move02 = false
+    }
 
   if (e.key == 'w' || e.key == 'W') {
-    //console.log('Stop sove right')
-    z3 = false
-  };
-
+    move03 = false
+    }
+  
   if (e.key == 's' || e.key == 'S') {
-    //console.log('Stop move right')
-    z4 = false
-  };
+    move04 = false
+    }
 });
+
+//Size stuff to the players screen
+function szz() {
+  var winX = window.innerWidth + "px";
+  var winY = window.innerHeight + "px";
+  console.log('Window size \n \n' + 'Width: ' + winX + '\n' + 'height: ' + winY)
+  document.getElementById('x').style.width = winX
+  document.getElementById('x').style.height = winY
+}
+
+//disable zoom
+function sz(){
+  let zoom = Number((window.innerWidth / window.screen.width).toFixed(3));
+  document.firstElementChild.style.zoom = zoom;
+}
   </script>
 </body>
 </html>
