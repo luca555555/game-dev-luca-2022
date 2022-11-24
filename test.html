@@ -2,42 +2,34 @@
 <html> 
 <head>
   <title>Duck</title>
+  <meta name="viewport" user-scalable="no">
   <link rel="stylesheet" href="shooter.css" type="text/css">
   <script src="shooter.js"></script>
-  <style>
-    html {
-    font-size: 22px;
-}
-
-body {
-    color: white;
-    background-color: grey;
-    overflow: hidden;
-}
-
-.genaric {
-    position:absolute;
-    height: 100px;
-    width: 100px;
-    top: 100px;
-    left: 100px;
-    background-color: black;
-}
-  </style>
 </head>
-<body onresize="{sz();}" onload="{sz(); szz(); srt();}">
+<body onload="{srt(); sz();}" onresize="{sz();}">
   
   <!--php sql database-->
 
-  <img id="player" src="images/Drawing.png" style="width: 100px; height: 100px; position: absolute; top: 0px; left: 75px;">
+  <img id="player" src="images/Drawing.png" style="zoom: 100%; width: 100px; height: 100px; position: absolute; top: 0px; left: 75px;">
 
-  <img id="death" src="" alt="Death cube" style=" background-color:crimson; width: 100px; height: 100px; position: absolute; top: 0px; left: 275px;">
-  <img id="" src="" alt="Save data" style=" background-color:beige; width: 100px; height: 100px; position: absolute; top: 0px; left: 375px;">
+  <img id="death" src="" alt="Death cube" style="background-color:crimson; width: 100px; height: 100px; position: absolute; top: 0px; left: 275px;">
+  <img id="" src="" alt="Save data" style="background-color:beige; width: 100px; height: 100px; position: absolute; top: 0px; left: 385px;">
 
-  <img id="x" src="images/sky.png" style="z-index: -10; position: absolute; width: 100px; height: 100px; top: 0px; left: -100px;">
-  
-  <script>
-    function myHitOther(my1,my2){
+  <div id="playarea" style="z-index: -998; background-color:black; width: 1330px; height: 550px; position: absolute; top: 100px; left: 100px;"></div>
+  <div id="walls" style="z-index: -999; background-color:grey; width: 1550px; height: 760px; position: absolute; top: 0px; left: 0px;"></div>
+
+  <img id="x" src="images/sky.png" style="z-index: -1000; position: absolute; width: 100px; height: 100px; top: 0px; left: 0px;">
+</body>
+</html>
+
+
+
+
+
+
+
+//Check if this are touching
+function myHitOther(my1,my2){
   left1   = parseInt(document.getElementById(my1).style.left)
   right1  = left1 + parseInt(document.getElementById(my1).style.width)
   top1    = parseInt(document.getElementById(my1).style.top)   
@@ -56,10 +48,20 @@ body {
 
 
 function myCheckHit(){
-  if ( myHitOther('player','death') ){
-    console.log('touched')
+  if ( myHitOther('player','playarea') ){
+    console.log('In area')
+    boundrys = false
+  } else {
+    console.log('out of area')
+    boundrys = true
   }
 }
+
+boundrys = false
+bound_right = false
+bound_left = false
+bound_up = false
+bound_down = false
 
 
 
@@ -69,19 +71,49 @@ let clock
 function srt() {
   clearInterval(clock)
   clock = setInterval(function(){
+
+    //
     if (move01 == true) {
       document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
+    } 
+    
+    //break if player is bound on right
+    if (move01 == true && boundrys == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + -10 + 'px'
+      bound_right = true
     }
+
+    //work if player is bound on the left
+    if (move01 == true && bound_left == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
+      bound_left = false
+    } 
+
+
 
     if (move02 == true) {
       document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
     }
 
-    if (move03 == true) {
+    if (move02 == true && boundrys == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
+      bound_left = true
+    }
+
+    if (move02 == true && bound_right == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
+      bound_right = false
+    }
+
+
+
+    if (move03 == true && boundrys == false) {
       document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 10 + 'px'
     }
 
-    if (move04 == true) {
+
+
+    if (move04 == true && boundrys == false) {
       document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px'
     }
     myCheckHit()
@@ -131,20 +163,14 @@ document.addEventListener("keyup", function(e) {
     }
 });
 
-//Size stuff to the players screen
-function szz() {
-  var winX = window.innerWidth + "px";
-  var winY = window.innerHeight + "px";
-  console.log('Window size \n \n' + 'Width: ' + winX + '\n' + 'height: ' + winY)
-  document.getElementById('x').style.width = winX
-  document.getElementById('x').style.height = winY
-}
+//set the background
+function sz() {
+  
+  var x = window.innerWidth
+  document.getElementById('x').style.width = x + 'px'
 
-//disable zoom
-function sz(){
-  let zoom = Number((window.innerWidth / window.screen.width).toFixed(3));
-  document.firstElementChild.style.zoom = zoom;
+  var y = window.innerHeight
+  document.getElementById('x').style.height = y + 'px'
+
+  console.log('window dimentions \n' + x + '\n' + y)
 }
-  </script>
-</body>
-</html>
