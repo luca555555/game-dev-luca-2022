@@ -3,30 +3,87 @@
     <head>
         <title id="sad">Luca | Classes</title>
         <link rel="stylesheet" href="main.css" type="text/css">
+        <style>
+          tr, td, th, caption {
+            border: 3px solid white;
+          }
+        </style>
     </head>
     <body>
         <center>
             <h1>Pay</h1>
             <h3>Luca</h3>
             <hr>
-            <input id="x1" type="number" placeholder="salary" value="1500">
-            <input id="x2" type="number" placeholder="hours" value="8">
-            <input id="x3" type="number" placeholder="tax" value="30"><br>
-            <button onclick="{calculate()}">XXXX</button>
-            <div id="wo">Without</div>
-            <div id="w">with</div>
+            <input id="x1" type="number" placeholder="Hourly pay" value="15">
+            <input id="x2" type="number" placeholder="Work hours" value="8">
+            <input id="x3" type="number" placeholder="Amount taxed" value="30"><br>
+            <br>
+            <button onclick="{calculate()}">Calculate</button>
             <script>
-                function calculate() {
-                    temp1 = document.getElementById('x1').value
-                    temp2 = document.getElementById('x2').value
-                    temp3 = document.getElementById('x3').value
+              function calculate() {
+                //perday
+                pay = document.getElementById('x1').value
+                hour = document.getElementById('x2').value
+                tax = document.getElementById('x3').value
 
-                    temp4 = temp1 * temp2
-                    temp5 = temp1 * temp2 / temp3
-                    document.getElementById('wo').innerHTML = 'Without tax: ' + temp4
-                    document.getElementById('w').innerHTML = 'with tax: ' + temp5
-                }
-                //vars objects
-            </script> 
+                pay = pay * hour
+                document.getElementById('dc01').innerHTML = pay + '$'
+
+                temp = pay / 100 * tax
+                pay = pay - temp
+                document.getElementById('dc02').innerHTML = pay + '$'
+
+                //permonth
+                pay = document.getElementById('x1').value
+                hour = document.getElementById('x2').value
+                tax = document.getElementById('x3').value
+
+                pay = pay * hour * 30
+                document.getElementById('dc03').innerHTML = pay + '$'
+
+                temp = pay / 100 * tax
+                pay = pay - temp
+                document.getElementById('dc04').innerHTML = pay + '$'
+
+                //peryear
+                pay = document.getElementById('x1').value
+                hour = document.getElementById('x2').value
+                tax = document.getElementById('x3').value
+
+                pay = pay * hour * 360
+                document.getElementById('dc05').innerHTML = pay + '$'
+
+                temp = pay / 100 * tax
+                pay = pay - temp
+                document.getElementById('dc06').innerHTML = pay + '$'
+              }
+            </script>
+            <br>
+            <br>
+            <table>
+              <caption>Salary</caption>
+              <tr>
+                <th>Time</th>
+                <th>Before tax</th>
+                <th>After tax</th>
+              </tr>
+              <tr>
+                <td>1 day</td>
+                <td id="dc01">Not calculated yet</td>
+                <td id="dc02">Not calculated yet</td>
+              </tr>
+
+              <tr>
+                <td>1 month</td>
+                <td id="dc03">Not calculated yet</td>
+                <td id="dc04">Not calculated yet</td>
+              </tr>
+
+              <tr>
+                <td>1 year</td>
+                <td id="dc05">Not calculated yet</td>
+                <td id="dc06">Not calculated yet</td>
+              </tr>
+            </table>
     </body>
 </html>
