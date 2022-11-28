@@ -2,23 +2,51 @@
 <html> 
 <head>
   <title>Duck</title>
-  <meta name="viewport" user-scalable="no">
-  <link rel="stylesheet" href="shooter.css" type="text/css">
+  <meta title="author" content="me, myslef, and I">
+  <link rel="stylesheet" href="" type="text/css">
   <script src="shooter.js"></script>
 </head>
-<body onload="{srt(); sz();}" onresize="{sz();}">
+<body onload="{srt(); srt2(); sz();}" onresize="{sz();}">
   
-  <!--php sql database-->
+  <!--
+    Remember important stuff
+    1. php sql database 
+    2.
+    3.
+  -->
 
-  <img id="player" src="images/Drawing.png" style="zoom: 100%; width: 100px; height: 100px; position: absolute; top: 0px; left: 75px;">
+  <!--Player-->
+  <img id="player" src="images/slime02.png" style="zoom: 100%; width: 100px; height: 100px; position: absolute; top: 150px; left: 100px;">
+  <div id="info" style="background-color:red; width: 200px; height: 40px; position: absolute; top: 0px; left: 0px; color: white">
+    &nbsp; Area: caves<br>
+    &nbsp; Lives: 3 <br>
+    &nbsp; x <br>
+    <br>
+    <b>&nbsp;Debug info</b><br>
+    &nbsp; Room number: 1
+  </div>
 
-  <img id="death" src="" alt="Death cube" style="background-color:crimson; width: 100px; height: 100px; position: absolute; top: 0px; left: 275px;">
-  <img id="" src="" alt="Save data" style="background-color:beige; width: 100px; height: 100px; position: absolute; top: 0px; left: 385px;">
+  <div id="inventory" style="position: absolute; background-color: rgba(255, 255, 255, 0.603); border-radius: 5%; height: 700px; width: 500px; top: -1000px; left: 800px;">
+    <div style="font-size: 45px;">This is the title</div><br>
+    <div style="font-size: 20px;">Do other things</div><br>
+  </div>
 
-  <div id="playarea" style="z-index: -998; background-color:black; width: 1330px; height: 550px; position: absolute; top: 100px; left: 100px;"></div>
-  <div id="walls" style="z-index: -999; background-color:grey; width: 1550px; height: 760px; position: absolute; top: 0px; left: 0px;"></div>
+  <!--Test onjects-->
+  <img id="death" src="" alt="Death" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 275px;">
+  <img id="save" src="" alt="Save" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 385px;">
+  <img id="obj" src="" alt="Object" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 495px;">
+  <img id="slow" src="" alt="Slow" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 605px;">
 
-  <img id="x" src="images/sky.png" style="z-index: -1000; position: absolute; width: 100px; height: 100px; top: 0px; left: 0px;">
+  <!--doors-->
+  <img id="door" src="" alt="Door" style="background-color:red; width: 160px; height: 110px; position: absolute; top: -1000px; left: 715px;">
+  <img id="door2" src="" alt="Door" style="background-color:red; width: 160px; height: 110px; position: absolute; top: 650px; left: 715px;">
+
+  <!--style-->
+  <div id="floor" style="z-index: -998; background-color:gray; width: 1320px; height: 560px; position: absolute; top: 90px; left: 100px;"></div>
+  <div id="walls" style="z-index: -999; background-color:black; width: 1550px; height: 760px; position: absolute; top: 0px; left: 0px;"></div>
+
+  <!--Background for when your page scroll sucks-->
+  <img id="x" src="" style="z-index: -1000; position: absolute; width: 100px; height: 100px; top: 0px; left: 0px;">
 </body>
 </html>
 
@@ -26,151 +54,171 @@
 
 
 
-
-
-//Check if this are touching
+//Check if this are touching also Hello world! :p
+//btw if your trying to figure out this mess works im sorry in advance
 function myHitOther(my1,my2){
-  left1   = parseInt(document.getElementById(my1).style.left)
-  right1  = left1 + parseInt(document.getElementById(my1).style.width)
-  top1    = parseInt(document.getElementById(my1).style.top)   
-  bottom1 = top1   + parseInt(document.getElementById(my1).style.height)
-  left2   = parseInt(document.getElementById(my2).style.left)
-  right2  = left2 + parseInt(document.getElementById(my2).style.width)
-  top2    = parseInt(document.getElementById(my2).style.top)   
-  bottom2 = top2   + parseInt(document.getElementById(my2).style.height)
-  if ((right1  >=  left2  ) &&      	   
-      (bottom1 >=  top2   ) &&
-      (left1   <=  right2 ) &&
-      (top1    <=  bottom2) ){
-      return true
+    left1   = parseInt(document.getElementById(my1).style.left)
+    right1  = left1 + parseInt(document.getElementById(my1).style.width)
+    top1    = parseInt(document.getElementById(my1).style.top)   
+    bottom1 = top1   + parseInt(document.getElementById(my1).style.height)
+    left2   = parseInt(document.getElementById(my2).style.left)
+    right2  = left2 + parseInt(document.getElementById(my2).style.width)
+    top2    = parseInt(document.getElementById(my2).style.top)   
+    bottom2 = top2   + parseInt(document.getElementById(my2).style.height)
+    if ((right1  >=  left2  ) &&      	   
+        (bottom1 >=  top2   ) &&
+        (left1   <=  right2 ) &&
+        (top1    <=  bottom2) ){
+        return true
+    }
   }
-}
+  
+  let room_number = 1
+  
+  function myCheckHit(){
+    if ( myHitOther('player','death') ){
+      console.log('Hit death block')
+    }
 
+    if ( myHitOther('player','save') ){
+      console.log('Saved data \n room number')
+    }
 
-function myCheckHit(){
-  if ( myHitOther('player','playarea') ){
-    console.log('In area')
-    boundrys = false
-  } else {
-    console.log('out of area')
-    boundrys = true
+    if ( myHitOther('player','door2') && room_number == 1 ){
+      console.log('Moved room')
+      room_number = 2
+    }
+
+    if ( myHitOther('player','door') && room_number == 2 ){
+      console.log('Moved room')
+      room_number = 1
+    }
   }
-}
 
-boundrys = false
-bound_right = false
-bound_left = false
-bound_up = false
-bound_down = false
+  let clock2
+
+  function srt2() {
+    clearInterval(clock2)
+    clock2 = setInterval(function(){
+      //console.log('check for room change')
+
+      if (room_number == 1) {
+        document.getElementById('door').style.top = '-1000px'
+        document.getElementById('save').style.top = '-1000px'
+
+        document.getElementById('door2').style.top = '650px'
+        document.getElementById('door2').style.height = '110px'
+      }
+
+      if (room_number == 2) {
+        document.getElementById('door2').style.top = '-1000px'
+
+        document.getElementById('door').style.top = '0px'
+        document.getElementById('door').style.height = '90px'
+        document.getElementById('door').style.left = '615px'
+
+        document.getElementById('save').style.top = '515px'
+      }
+
+      //change the visual room info
+      document.getElementById('info').innerHTML = '&nbsp; Area: caves<br> &nbsp; Lives: 3 <br> &nbsp; x <br> <br> <b>&nbsp;Debug info</b><br> &nbsp; Room number: ' + room_number
+    }, 1)
+    }
+
+  //Move the player
+  let clock
+  let speed = 10
+  
+  function srt() {
+    clearInterval(clock)
+    clock = setInterval(function(){
+  
+      if (move01 == true && parseInt(document.getElementById('player').style.left) < 1320) {
+        document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
+      } 
+  
+      if (move02 == true && parseInt(document.getElementById('player').style.left) > 100) {
+        document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
+      }
 
 
+      if (move03 == true && parseInt(document.getElementById('player').style.top) > 90) {
+        document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 10 + 'px'
+      }
 
-//Move the player
-let clock
+  
+      if (move04 == true && parseInt(document.getElementById('player').style.top) < 550) {
+        document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px'
+      }
 
-function srt() {
-  clearInterval(clock)
-  clock = setInterval(function(){
+      myCheckHit()
+    }, speed)
+    }
+  
+  move01 = false //right
+  move02 = false //left
+  move03 = false //up
+  move04 = false //down
 
-    //
-    if (move01 == true) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
-    } 
+  inventory_toggle = false
+  
+  //detect when keys are pressed
+  //This is a good exploit for smooth movement I spend like 5 hours before I thought of this
+  document.addEventListener("keydown", function(e) {
+    if (e.key == 'd' || e.key == 'D') {
+      move01 = true
+      }
+  
+    if (e.key == 'a' || e.key == 'A') {
+      move02 = true
+      }
+  
+    if (e.key == 'w' || e.key == 'W') {
+      move03 = true
+      }
+  
+    if (e.key == 's' || e.key == 'S') {
+      move04 = true
+      }
+
+      if (e.key == 'f' || e.key == 'F') {
+        if (inventory_toggle == false) {
+        document.getElementById('inventory').style.top = '0px'
+        inventory_toggle = true
+        } else if (inventory_toggle == true){
+          document.getElementById('inventory').style.top = '-1000px'
+          inventory_toggle = false
+        }
+        }
+  });
+  
+  
+  document.addEventListener("keyup", function(e) {
+    if (e.key == 'd' || e.key == 'D') {
+      move01 = false
+      }
+  
+    if (e.key == 'a' || e.key == 'A') {
+      move02 = false
+      }
+  
+    if (e.key == 'w' || e.key == 'W') {
+      move03 = false
+      }
     
-    //break if player is bound on right
-    if (move01 == true && boundrys == true) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + -10 + 'px'
-      bound_right = true
-    }
-
-    //work if player is bound on the left
-    if (move01 == true && bound_left == true) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
-      bound_left = false
-    } 
-
-
-
-    if (move02 == true) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
-    }
-
-    if (move02 == true && boundrys == true) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
-      bound_left = true
-    }
-
-    if (move02 == true && bound_right == true) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
-      bound_right = false
-    }
-
-
-
-    if (move03 == true && boundrys == false) {
-      document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 10 + 'px'
-    }
-
-
-
-    if (move04 == true && boundrys == false) {
-      document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px'
-    }
-    myCheckHit()
-  }, 10)
+    if (e.key == 's' || e.key == 'S') {
+      move04 = false
+      }
+  });
+  
+  //set the background
+  function sz() {
+    
+    var x = window.innerWidth
+    document.getElementById('x').style.width = x + 'px'
+  
+    var y = window.innerHeight
+    document.getElementById('x').style.height = y + 'px'
+  
+    console.log('window dimentions \n' + x + '\n' + y)
   }
-
-move01 = false //right
-move02 = false //left
-move03 = false //up
-move04 = false //down
-
-//detect when keys are pressed
-document.addEventListener("keydown", function(e) {
-  if (e.key == 'd' || e.key == 'D') {
-    move01 = true
-    }
-
-  if (e.key == 'a' || e.key == 'A') {
-    move02 = true
-    }
-
-  if (e.key == 'w' || e.key == 'W') {
-    move03 = true
-    }
-
-  if (e.key == 's' || e.key == 'S') {
-    move04 = true
-    }
-});
-
-
-document.addEventListener("keyup", function(e) {
-  if (e.key == 'd' || e.key == 'D') {
-    move01 = false
-    }
-
-  if (e.key == 'a' || e.key == 'A') {
-    move02 = false
-    }
-
-  if (e.key == 'w' || e.key == 'W') {
-    move03 = false
-    }
-  
-  if (e.key == 's' || e.key == 'S') {
-    move04 = false
-    }
-});
-
-//set the background
-function sz() {
-  
-  var x = window.innerWidth
-  document.getElementById('x').style.width = x + 'px'
-
-  var y = window.innerHeight
-  document.getElementById('x').style.height = y + 'px'
-
-  console.log('window dimentions \n' + x + '\n' + y)
-}
