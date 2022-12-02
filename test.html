@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html> 
 <head>
-  <title>Duck</title>
+  <title>Slime JUST a fucking slime</title>
   <meta title="author" content="me, myslef, and I">
   <link rel="stylesheet" href="" type="text/css">
   <script src="shooter.js"></script>
 </head>
-<body onload="{srt(); srt2(); sz();}" onresize="{sz();}">
+<body onload="{srt(); srt2(); sz(); ld();}" onresize="{sz();}">
   
   <!--
     Remember important stuff
@@ -29,14 +29,20 @@
   <div id="inventory" style="position: absolute; background-color: rgba(255, 255, 255, 0.603); border-radius: 5%; height: 500px; width: 500px; top: -1000px; left: 550px;">
     <center>
     <div style="font-size: 45px;">This is the title</div><br>
-  </center>
     <div style="font-size: 20px;">Do other things</div><br>
+    <button onclick="{erase()}">Reset save to default</button>
+  </center>
   </div>
 
   <!--Other objects-->
-  <img id="death" src="" alt="Death" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 275px;">
+  <img id="death" src="" alt="Enemy" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 275px;">
+  
   <img id="save" src="" alt="Save" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 385px;">
-  <img id="slow" src="" alt="Slow" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 605px;">
+  <img id="save_prompt" src="" alt="Click this to save" onclick="{sv();}" style="background-color:yellow; width: 100px; height: 100px; position: absolute; top: -1000px; left: 385px;">
+  
+  <img id="npc01" src="" alt="NPC" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 605px;">
+
+  <div id="dialogbox" src="" alt="NPC" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 605px;">Fuck a duck bro</div>
 
   <!--Walls-->
   <img id="obj" src="" alt="Object" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 495px;">
@@ -54,12 +60,6 @@
   <img id="x" src="" style="z-index: -1000; position: absolute; width: 100px; height: 100px; top: 0px; left: 0px;">
 </body>
 </html>
-
-
-
-
-
-
 
 
 
@@ -87,16 +87,83 @@ function myHitOther(my1,my2){
 
 let room_number = 1
 let area = 'caves'
+let lives = 3
+let info = ''
+
+candie = true
 
 colright = false
 colleft = false
 
+coltop = false
+colbottom = false
+
+inbox = false
+
+
+dio01 = false
+dionum01 = 1
+
+function erase() {
+  room_number = 1
+  area = 'caves'
+  lives = 3
+  sv()
+}
+
+function sv() {
+  alert('The following is saved\nLives: ' + lives + '\nArea: ' + area + '\nRoom number: ' + room_number)
+  localStorage.setItem('lives', lives)
+  localStorage.setItem('area', area)
+  localStorage.setItem('roomnum', room_number)
+  move01 = false
+  move02 = false
+  move03 = false
+  move04 = false
+  document.getElementById('player').style.top = document.getElementById('save').style.top
+  document.getElementById('player').style.left = parseInt(document.getElementById('save').style.left) + 110 + 'px'
+}
+
+function ld() {
+  lives = localStorage.getItem('lives')
+  area = localStorage.getItem('area')
+  room_number = localStorage.getItem('roomnum')
+
+  setTimeout(function(){
+    document.getElementById('player').style.top = document.getElementById('save').style.top
+    document.getElementById('player').style.left = parseInt(document.getElementById('save').style.left) + 110 + 'px'
+}, 50);
+
+  
+}
+
 function myCheckHit(){
   if ( myHitOther('player','death') ){
-    console.log('Hit death block')
+    if (candie == true && lives == 1) {
+      ld()
+    } else if (candie == true) {
+      candie = false
+      lives = lives - 1
+    }
+  } else {
+    candie = true
+  }
+
+  if ( myHitOther('player','npc01') ){
+    document.getElementById('dialogbox').style.top = '600px'
+    dio01 = true
+    dionum01 = 1
+  }
+
+  if ( myHitOther('player','save') ){
+    document.getElementById('save_prompt').style.top = '0px'
+  } else {
+    document.getElementById('save_prompt').style.top = '-10000px'
   }
 
   if ( myHitOther('player','obj') ){
+    inbox = true
+    if (group == 1) {
     if (move01 == true) {
       colright = true
       console.log('bound right')
@@ -108,8 +175,19 @@ function myCheckHit(){
     }
   }
 
-  if ( myHitOther('player','save') ){
-    console.log('Saved data \nRoom number: ' + room_number + '\nArea: ' + area)
+  if (group == 2) {
+    if (move03 == true) {
+      coltop = true
+      console.log('bound top')
+    }
+
+    if (move04 == true) {
+      colbottom = true
+      console.log('bound bottom')
+    }
+  }
+  } else {
+    inbox = false
   }
 
   //Track room
@@ -136,6 +214,8 @@ function srt2() {
 
       document.getElementById('save').style.top = '-1000px'
       document.getElementById('obj').style.top = '-1000px'
+      document.getElementById('death').style.top = '-1000px'
+      document.getElementById('npc01').style.top = '-1000px'
 
       document.getElementById('door2').style.top = '650px'
       document.getElementById('door2').style.height = '110px'
@@ -152,10 +232,16 @@ function srt2() {
 
       document.getElementById('obj').style.top = '315px'
       document.getElementById('obj').style.left = '300px'
+
+      document.getElementById('death').style.top = '215px'
+      document.getElementById('death').style.left = '900px'
+
+      document.getElementById('npc01').style.top = '415px'
+      document.getElementById('npc01').style.left = '900px'
     }
 
     //change the visual room info
-    document.getElementById('info').innerHTML = '&nbsp; Area: caves<br> &nbsp; Lives: 3 <br> &nbsp; x <br> <br> <b>&nbsp;Debug info</b><br> &nbsp; Room number: ' + room_number
+    document.getElementById('info').innerHTML = '&nbsp; Area: caves<br> &nbsp; Lives: ' + lives + ' <br> &nbsp; x <br> <br> <b>&nbsp;Debug info</b><br> &nbsp; Room number: ' + room_number
   }, 1)
   }
 
@@ -163,36 +249,66 @@ function srt2() {
 let clock
 let speed = 10
 
+let group
+chat = false
+
 function srt() {
   clearInterval(clock)
   clock = setInterval(function(){
+
+    if (inbox == false) {
+    test = parseInt(document.getElementById('obj').style.top)
+    test2 = parseInt(document.getElementById('player').style.top) + parseInt(document.getElementById('obj').style.height) - 10
+    test3 = parseInt(document.getElementById('player').style.top) - parseInt(document.getElementById('obj').style.height) + 10
+
+    if (test > test2) {
+      group = 2
+      console.log(group)
+    } else if (test < test3) {
+      group = 2
+      console.log(group)
+    } else {
+      group = 1
+      console.log(group)
+    }
+  }
 
     if (move01 == true && parseInt(document.getElementById('player').style.left) < 1320 && colright == false) {
       document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
 
       colleft = false
+
+      coltop = false
+      colbottom = false
     }
 
     if (move02 == true && parseInt(document.getElementById('player').style.left) > 100 && colleft == false) {
       document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
 
       colright = false
+
+      coltop = false
+      colbottom = false
     }
 
 
-    if (move03 == true && parseInt(document.getElementById('player').style.top) > 90) {
+    if (move03 == true && parseInt(document.getElementById('player').style.top) > 90 && coltop == false) {
       document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 10 + 'px'
 
       colright = false
       colleft = false
+
+      colbottom = false
     }
 
 
-    if (move04 == true && parseInt(document.getElementById('player').style.top) < 550) {
+    if (move04 == true && parseInt(document.getElementById('player').style.top) < 550 && colbottom == false) {
       document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px'
 
       colright = false
       colleft = false
+
+      coltop = false
     }
 
     myCheckHit()
@@ -210,18 +326,27 @@ inventory_toggle = false
 document.addEventListener("keydown", function(e) {
   if (e.key == 'd' || e.key == 'D') {
     move01 = true
+
+
+    dio01 = false
     }
 
   if (e.key == 'a' || e.key == 'A') {
     move02 = true
+
+    dio01 = false
     }
 
   if (e.key == 'w' || e.key == 'W') {
     move03 = true
+
+    dio01 = false
     }
 
   if (e.key == 's' || e.key == 'S') {
     move04 = true
+
+    dio01 = false
     }
 
     if (e.key == 'f' || e.key == 'F') {
@@ -232,6 +357,12 @@ document.addEventListener("keydown", function(e) {
         document.getElementById('inventory').style.top = '-1000px'
         inventory_toggle = false
       }
+      }
+
+      if (e.keyCode == 32 && dio01 == true) {
+        x = document.getElementById('dialogbox').innerHTML
+        //Put stuff here
+        document.getElementById('dialogbox').innerHTML = x
       }
 });
 
