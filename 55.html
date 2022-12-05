@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>
+       uwu
+    </title>
+
+    <style>
+    html {
+      font-size:22px
+    }
+  
+    body {
+      background-color: rgb(100, 96, 96);
+      color: rgb(255, 255, 255);
+      font-family: cursive;
+      font-style: normal;
+      overflow: hidden;
+    }
+    </style>
+</head>
+<body onload="{srt();}">
+  <img id="player" src="images/Drawing.png" style="zoom: 100%; width: 100px; height: 100px; position: absolute; top: 150px; left: 100px;">
+
+  <img id="block01_left" src="" style="zoom: 100%; width: 30px; height: 250px; position: absolute; top: 150px; left: 800px; background-color: black;">
+  <img id="block01_right" src="" style="zoom: 100%; width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
+  <img id="block01_top" src="" style="zoom: 100%; width: 500px; height: 30px; position: absolute; top: 500px; left: 500px; background-color: black;">
+  <img id="block01_deco" src="" style="z-index: 1; zoom: 100%; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
+  <script>
+    move_right = false
+    move_left = false
+    jump = true
+
+    stop_right = false
+    stop_left = false
+    stop_down = false
+
+    let clock
+
+    function myHitOther(my1,my2){
+      left1   = parseInt(document.getElementById(my1).style.left)
+      right1  = left1 + parseInt(document.getElementById(my1).style.width)
+      top1    = parseInt(document.getElementById(my1).style.top)   
+      bottom1 = top1   + parseInt(document.getElementById(my1).style.height)
+      left2   = parseInt(document.getElementById(my2).style.left)
+      right2  = left2 + parseInt(document.getElementById(my2).style.width)
+      top2    = parseInt(document.getElementById(my2).style.top)   
+      bottom2 = top2   + parseInt(document.getElementById(my2).style.height)
+      if ((right1  >=  left2  ) &&      	   
+      (bottom1 >=  top2   ) &&
+      (left1   <=  right2 ) &&
+      (top1    <=  bottom2) ){
+        return true
+      }
+    }
+
+    function myCheckHit(){
+      if ( myHitOther('player', 'block01_left') ){
+        console.log('touch')
+        stop_right = true
+      } else {
+        stop_right = false
+      }
+
+      if ( myHitOther('player', 'block01_right') ){
+        console.log('touch2')
+        stop_left = true
+      } else {
+        stop_left = false
+      }
+
+      if ( myHitOther('player', 'block01_top') ){
+        console.log('touch3')
+        stop_down = true
+      } else {
+        stop_down = false
+      }
+    }
+
+    function srt() {
+      floor = window.innerHeight - 110
+      right_side = window.innerWidth - 110
+
+      document.getElementById('block01_left').style.top = parseInt(document.getElementById('block01_top').style.top) + 30 +'px'
+      document.getElementById('block01_left').style.left = parseInt(document.getElementById('block01_top').style.left) - 30 + 'px'
+
+      document.getElementById('block01_right').style.top = parseInt(document.getElementById('block01_top').style.top) + 30 +'px'
+      document.getElementById('block01_right').style.left = parseInt(document.getElementById('block01_top').style.left) + parseInt(document.getElementById('block01_top').style.width) + 'px'
+
+      document.getElementById('block01_deco').style.left = parseInt(document.getElementById('block01_top').style.left) - 30 + 'px'
+      document.getElementById('block01_deco').style.width = parseInt(document.getElementById('block01_top').style.width) + 60 + 'px'
+      document.getElementById('block01_deco').style.height = parseInt(document.getElementById('block01_left').style.height) + 100 + 'px'
+
+      clearInterval(clock)
+      clock = setInterval(function(){
+        if (parseInt(document.getElementById('player').style.top) < floor && stop_down == false) {
+        document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 3 + 'px';
+        } else {
+          jump = true
+        }
+
+        if (move_right == true && parseInt(document.getElementById('player').style.left) < right_side && stop_right == false) {
+          document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px';
+        }
+
+        if (move_left == true && parseInt(document.getElementById('player').style.left) > 0 && stop_left == false) {
+          document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px';
+        }
+
+        myCheckHit()
+      }, 5)
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key == 'd' || e.key == 'D') {
+        move_right = true
+      }
+
+      if (e.key == 'a' || e.key == 'A') {
+        move_left = true
+      }
+
+      if (e.keyCode == 32) {
+        if (jump == true) {
+        jump = false
+        document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 500 + 'px';
+        }
+      }
+    });
+
+    document.addEventListener('keyup', function(e) {
+      if (e.key == 'd' || e.key == 'D') {
+        move_right = false
+      }
+
+      if (e.key == 'a' || e.key == 'A') {
+        move_left = false
+      }
+    });
+  </script>
+</body>
+</html>
