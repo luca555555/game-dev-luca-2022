@@ -20,23 +20,28 @@
     }
     </style>
 </head>
-<body onload="{srt();}">
-  <img id="player" src="images/Drawing.png" style="zoom: 100%; width: 100px; height: 100px; position: absolute; top: 150px; left: 100px;">
+<body onload="{srt(); srt2();}">
+  <img id="player" src="images/Drawing.png" style="width: 100px; height: 100px; position: absolute; top: 150px; left: 100px;">
 
-  <img id="block01_left" src="" style="zoom: 100%; width: 30px; height: 250px; position: absolute; top: 150px; left: 800px; background-color: black;">
-  <img id="block01_right" src="" style="zoom: 100%; width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
-  <img id="block01_top" src="" style="zoom: 100%; width: 500px; height: 30px; position: absolute; top: 500px; left: 500px; background-color: black;">
-  <img id="block01_deco" src="" style="z-index: 1; zoom: 100%; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
+  <img id="death_left" src="" style="width: 30px; height: 50px; position: absolute; top: 0px; left: 0px; background-color: rgb(170, 72, 72);">
+  <img id="death_right" src="" style="width: 30px; height: 50px; position: absolute; top: 0px; left: 100px; background-color: rgb(48, 140, 143);">
+
+  <img id="block01_left" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 800px; background-color: black;">
+  <img id="block01_right" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
+  <img id="block01_top" src="" style="width: 100px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: black;">
+  <img id="block01_deco" src="" style="z-index: 1; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
   <script>
     move_right = false
     move_left = false
-    jump = true
+    move_down = false
+    jump = false
 
     stop_right = false
     stop_left = false
     stop_down = false
 
     let clock
+    let clock2
 
     function myHitOther(my1,my2){
       left1   = parseInt(document.getElementById(my1).style.left)
@@ -76,40 +81,90 @@
       } else {
         stop_down = false
       }
+
+      if ( myHitOther('player', 'death_left') ){
+        document.write('xx')
+      }
+
+      if ( myHitOther('player', 'death_right') ){
+        document.write('xx')
+      }
     }
 
     function srt() {
-      floor = window.innerHeight - 110
-      right_side = window.innerWidth - 110
-
-      document.getElementById('block01_left').style.top = parseInt(document.getElementById('block01_top').style.top) + 30 +'px'
-      document.getElementById('block01_left').style.left = parseInt(document.getElementById('block01_top').style.left) - 30 + 'px'
-
-      document.getElementById('block01_right').style.top = parseInt(document.getElementById('block01_top').style.top) + 30 +'px'
-      document.getElementById('block01_right').style.left = parseInt(document.getElementById('block01_top').style.left) + parseInt(document.getElementById('block01_top').style.width) + 'px'
-
-      document.getElementById('block01_deco').style.left = parseInt(document.getElementById('block01_top').style.left) - 30 + 'px'
-      document.getElementById('block01_deco').style.width = parseInt(document.getElementById('block01_top').style.width) + 60 + 'px'
-      document.getElementById('block01_deco').style.height = parseInt(document.getElementById('block01_left').style.height) + 100 + 'px'
+      size()
 
       clearInterval(clock)
       clock = setInterval(function(){
         if (parseInt(document.getElementById('player').style.top) < floor && stop_down == false) {
         document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 3 + 'px';
+        } else if (stop_down == true) {
+          jump = true
+          document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 2 + 'px';
         } else {
           jump = true
         }
 
         if (move_right == true && parseInt(document.getElementById('player').style.left) < right_side && stop_right == false) {
           document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px';
+        } else if (stop_right == true) {
+          document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px';
         }
 
         if (move_left == true && parseInt(document.getElementById('player').style.left) > 0 && stop_left == false) {
           document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px';
+        } 
+
+        if (move_down == true && parseInt(document.getElementById('player').style.top) < floor && stop_down == false) {
+          document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px';
         }
 
         myCheckHit()
       }, 5)
+    }
+
+    function srt2() {
+      clearInterval(clock2)
+      clock2 = setInterval(function(){
+        console.log('fff')
+        document.getElementById('block01_top').style.left = parseInt(document.getElementById('block01_top').style.left) - 10 + 'px'
+        if (parseInt(document.getElementById('block01_top').style.left) == 0 || parseInt(document.getElementById('block01_top').style.left) < 0) {
+          document.getElementById('block01_top').style.left = window.innerWidth + 'px'
+          x = window.innerHeight - 110
+          x2 = 0 + 200
+          hi(x, x2)
+        }
+        size()
+      }, 30)
+    }
+
+    function size() {
+      floor = window.innerHeight - 110
+      right_side = window.innerWidth - 110
+
+      document.getElementById('block01_left').style.top = parseInt(document.getElementById('block01_top').style.top) + 30 +'px'
+      document.getElementById('block01_left').style.left = parseInt(document.getElementById('block01_top').style.left) - 30 + 'px'
+      document.getElementById('block01_left').style.height = floor + 'px'
+
+      document.getElementById('block01_right').style.top = parseInt(document.getElementById('block01_top').style.top) + 30 +'px'
+      document.getElementById('block01_right').style.left = parseInt(document.getElementById('block01_top').style.left) + parseInt(document.getElementById('block01_top').style.width) + 'px'
+      document.getElementById('block01_right').style.height = floor + 'px'
+
+      document.getElementById('block01_deco').style.left = parseInt(document.getElementById('block01_top').style.left) - 30 + 'px'
+      document.getElementById('block01_deco').style.width = parseInt(document.getElementById('block01_top').style.width) + 60 + 'px'
+      document.getElementById('block01_deco').style.top = document.getElementById('block01_top').style.top
+      document.getElementById('block01_deco').style.height = floor + 'px'
+
+      document.getElementById('death_left').style.height = floor + 110 + 'px'
+
+      document.getElementById('death_right').style.left = right_side + 80 + 'px'
+      document.getElementById('death_right').style.height = floor + 110 + 'px'
+    }
+
+    function hi(min, max) {
+      x = Math.floor(Math.random() * (max - min) + min)
+      document.getElementById('block01_top').style.top = x + 'px'
+      console.log(x)
     }
 
     document.addEventListener('keydown', function(e) {
@@ -121,11 +176,22 @@
         move_left = true
       }
 
+      if (e.key == 's' || e.key == 'S') {
+        move_down = true
+      }
+
       if (e.keyCode == 32) {
         if (jump == true) {
         jump = false
         document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 500 + 'px';
         }
+      }
+
+      if (e.key == 'p') {
+      x = window.innerHeight - 110
+      x2 = 0 + 200
+      hi(x, x2)
+      //hi(300, 750)
       }
     });
 
@@ -136,6 +202,10 @@
 
       if (e.key == 'a' || e.key == 'A') {
         move_left = false
+      }
+
+      if (e.key == 's' || e.key == 'S') {
+        move_down = false
       }
     });
   </script>
