@@ -20,8 +20,13 @@
     }
     </style>
 </head>
-<body onload="{srt(); srt2();}">
+<body onload="{srt(); srt2(); srt3();}" onresize="{size()}">
   <img id="player" src="images/Drawing.png" style="width: 100px; height: 100px; position: absolute; top: 150px; left: 100px;">
+  <center>
+  <div id="try" style="position: sticky; font-size: 100px;">
+    <button onclick="{ag()}" style="font-size: 100px; cursor: pointer">Restart</button>
+  </div>
+  </center>
 
   <img id="death_left" src="" style="width: 30px; height: 50px; position: absolute; top: 0px; left: 0px; background-color: rgb(170, 72, 72);">
   <img id="death_right" src="" style="width: 30px; height: 50px; position: absolute; top: 0px; left: 100px; background-color: rgb(48, 140, 143);">
@@ -30,6 +35,11 @@
   <img id="block01_right" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
   <img id="block01_top" src="" style="width: 100px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: black;">
   <img id="block01_deco" src="" style="z-index: 1; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
+
+  <img id="block02_left" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 800px; background-color: black;">
+  <img id="block02_right" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
+  <img id="block02_top" src="" style="width: 100px; height: 30px; position: absolute; top: 500px; left: 1100px; background-color: black;">
+  <img id="block02_deco" src="" style="z-index: 1; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
   <script>
     move_right = false
     move_left = false
@@ -40,8 +50,16 @@
     stop_left = false
     stop_down = false
 
+    gameover = false
+
     let clock
     let clock2
+
+    function ag() {
+      gameover = false
+      document.getElementById('player').style.left = '100px'
+      document.getElementById('player').style.top = '100px'
+    }
 
     function myHitOther(my1,my2){
       left1   = parseInt(document.getElementById(my1).style.left)
@@ -62,85 +80,123 @@
 
     function myCheckHit(){
       if ( myHitOther('player', 'block01_left') ){
-        console.log('touch')
         stop_right = true
-      } else {
-        stop_right = false
       }
 
       if ( myHitOther('player', 'block01_right') ){
-        console.log('touch2')
         stop_left = true
-      } else {
-        stop_left = false
       }
 
       if ( myHitOther('player', 'block01_top') ){
-        console.log('touch3')
         stop_down = true
-      } else {
-        stop_down = false
+      }
+      
+      if ( myHitOther('player', 'block02_left') ){
+        stop_right = true
+      }
+
+      if ( myHitOther('player', 'block02_right') ){
+        stop_left = true
+      }
+
+      if ( myHitOther('player', 'block02_top') ){
+        stop_down = true
       }
 
       if ( myHitOther('player', 'death_left') ){
-        document.write('xx')
+        gameover = true
       }
 
       if ( myHitOther('player', 'death_right') ){
-        document.write('xx')
+        gameover = true
       }
     }
 
     function srt() {
       size()
+      size2()
+      document.getElementById('try').style = 'position: absolute; top: -10000px;'
 
       clearInterval(clock)
       clock = setInterval(function(){
-        if (parseInt(document.getElementById('player').style.top) < floor && stop_down == false) {
+        if (gameover == true) {
+          document.getElementById('try').style = 'position: sticky; font-size: 100px;'
+        } else if (gameover == false) {
+          document.getElementById('try').style = 'position: absolute; top: -10000px;'
+        }
+
+        if (parseInt(document.getElementById('player').style.top) < floor && stop_down == false && gameover == false) {
         document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 3 + 'px';
         } else if (stop_down == true) {
           jump = true
           document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 2 + 'px';
         } else {
+          if (gameover == false) {
           jump = true
+          }
         }
 
-        if (move_right == true && parseInt(document.getElementById('player').style.left) < right_side && stop_right == false) {
+        if (move_right == true && parseInt(document.getElementById('player').style.left) < right_side && stop_right == false && gameover == false) {
           document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px';
         } else if (stop_right == true) {
           document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px';
         }
 
-        if (move_left == true && parseInt(document.getElementById('player').style.left) > 0 && stop_left == false) {
+        if (move_left == true && parseInt(document.getElementById('player').style.left) > 0 && stop_left == false && gameover == false) {
           document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px';
         } 
 
-        if (move_down == true && parseInt(document.getElementById('player').style.top) < floor && stop_down == false) {
+        if (move_down == true && parseInt(document.getElementById('player').style.top) < floor && stop_down == false && gameover == false) {
           document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px';
         }
 
+        stop_right = false
+        stop_left = false
+        stop_down = false
         myCheckHit()
       }, 5)
     }
 
+    cng01 = false
+    cng02 = false
+
     function srt2() {
       clearInterval(clock2)
       clock2 = setInterval(function(){
-        console.log('fff')
+        //console.log('fff')
         document.getElementById('block01_top').style.left = parseInt(document.getElementById('block01_top').style.left) - 10 + 'px'
         if (parseInt(document.getElementById('block01_top').style.left) == 0 || parseInt(document.getElementById('block01_top').style.left) < 0) {
-          document.getElementById('block01_top').style.left = window.innerWidth + 'px'
-          x = window.innerHeight - 110
-          x2 = 0 + 200
-          hi(x, x2)
+          x = Math.floor(Math.random() * (1000 - 1) + 1)
+
+          document.getElementById('block01_top').style.left = window.innerWidth + x + 'px'
+          cng01 = true
         }
+
+        document.getElementById('block02_top').style.left = parseInt(document.getElementById('block02_top').style.left) - 10 + 'px'
+        if (parseInt(document.getElementById('block02_top').style.left) == 0 || parseInt(document.getElementById('block02_top').style.left) < 0) {
+          x = Math.floor(Math.random() * (1000 - 1) + 1)
+
+          document.getElementById('block02_top').style.left = window.innerWidth + x + 'px'
+          cng02 = true
+        }
+
         size()
+        size2()
       }, 30)
     }
 
     function size() {
       floor = window.innerHeight - 110
       right_side = window.innerWidth - 110
+
+      x = window.innerHeight - 110
+      x2 = window.innerHeight - 500
+
+      if (cng01 == true) {
+      x3 = Math.floor(Math.random() * (x - x2) + x2)
+      document.getElementById('block01_top').style.top = x3 + 'px'
+      cng01 = false
+      }
 
       document.getElementById('block01_left').style.top = parseInt(document.getElementById('block01_top').style.top) + 30 +'px'
       document.getElementById('block01_left').style.left = parseInt(document.getElementById('block01_top').style.left) - 30 + 'px'
@@ -159,6 +215,33 @@
 
       document.getElementById('death_right').style.left = right_side + 80 + 'px'
       document.getElementById('death_right').style.height = floor + 110 + 'px'
+    }
+
+    function size2() {
+      floor = window.innerHeight - 110
+      right_side = window.innerWidth - 110
+
+      x = window.innerHeight - 110
+      x2 = window.innerHeight - 500
+
+      if (cng02 == true) {
+      x3 = Math.floor(Math.random() * (x - x2) + x2)
+      document.getElementById('block02_top').style.top = x3 + 'px'
+      cng02 = false
+      }
+
+      document.getElementById('block02_left').style.top = parseInt(document.getElementById('block02_top').style.top) + 30 +'px'
+      document.getElementById('block02_left').style.left = parseInt(document.getElementById('block02_top').style.left) - 30 + 'px'
+      document.getElementById('block02_left').style.height = floor + 'px'
+
+      document.getElementById('block02_right').style.top = parseInt(document.getElementById('block02_top').style.top) + 30 +'px'
+      document.getElementById('block02_right').style.left = parseInt(document.getElementById('block02_top').style.left) + parseInt(document.getElementById('block01_top').style.width) + 'px'
+      document.getElementById('block02_right').style.height = floor + 'px'
+
+      document.getElementById('block02_deco').style.left = parseInt(document.getElementById('block02_top').style.left) - 30 + 'px'
+      document.getElementById('block02_deco').style.width = parseInt(document.getElementById('block02_top').style.width) + 60 + 'px'
+      document.getElementById('block02_deco').style.top = document.getElementById('block02_top').style.top
+      document.getElementById('block02_deco').style.height = floor + 'px'
     }
 
     function hi(min, max) {
@@ -189,7 +272,8 @@
 
       if (e.key == 'p') {
       x = window.innerHeight - 110
-      x2 = 0 + 200
+      x2 = window.innerHeight - 500
+      console.log(x + '\n' + x2)
       hi(x, x2)
       //hi(300, 750)
       }
