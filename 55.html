@@ -20,12 +20,13 @@
     }
     </style>
 </head>
-<body onload="{srt(); srt2(); srt3();}" onresize="{size()}">
+<body onload="{srt(); srt2();}" onresize="{size()}">
   <img id="player" src="images/Drawing.png" style="width: 100px; height: 100px; position: absolute; top: 150px; left: 100px;">
   <center>
   <div id="try" style="position: sticky; font-size: 100px;">
     <button onclick="{ag()}" style="font-size: 100px; cursor: pointer">Restart</button>
   </div>
+  <div id="score"  style="font-size: 100px; cursor: default; font-family: cursive;">Score <br> 0</div>
   </center>
 
   <img id="death_left" src="" style="width: 30px; height: 50px; position: absolute; top: 0px; left: 0px; background-color: rgb(170, 72, 72);">
@@ -40,6 +41,16 @@
   <img id="block02_right" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
   <img id="block02_top" src="" style="width: 100px; height: 30px; position: absolute; top: 500px; left: 1100px; background-color: black;">
   <img id="block02_deco" src="" style="z-index: 1; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
+
+  <img id="block03_left" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 800px; background-color: black;">
+  <img id="block03_right" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
+  <img id="block03_top" src="" style="width: 100px; height: 30px; position: absolute; top: 500px; left: 1100px; background-color: black;">
+  <img id="block03_deco" src="" style="z-index: 1; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
+
+  <img id="block04_left" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 800px; background-color: black;">
+  <img id="block04_right" src="" style="width: 30px; height: 250px; position: absolute; top: 150px; left: 870px; background-color: black;">
+  <img id="block04_top" src="" style="width: 100px; height: 30px; position: absolute; top: 500px; left: 1100px; background-color: black;">
+  <img id="block04_deco" src="" style="z-index: 1; width: 270px; height: 30px; position: absolute; top: 500px; left: 900px; background-color: red;">
   <script>
     move_right = false
     move_left = false
@@ -52,13 +63,21 @@
 
     gameover = false
 
+    reset = 0
+
+    score = 0
+
     let clock
     let clock2
+    let clock3
 
     function ag() {
       gameover = false
       document.getElementById('player').style.left = '100px'
       document.getElementById('player').style.top = '100px'
+
+      score = 0
+      document.getElementById('score').innerHTML = 'Score <br> ' + score
     }
 
     function myHitOther(my1,my2){
@@ -103,6 +122,30 @@
         stop_down = true
       }
 
+      if ( myHitOther('player', 'block03_left') ){
+        stop_right = true
+      }
+
+      if ( myHitOther('player', 'block03_right') ){
+        stop_left = true
+      }
+
+      if ( myHitOther('player', 'block03_top') ){
+        stop_down = true
+      }
+
+      if ( myHitOther('player', 'block04_left') ){
+        stop_right = true
+      }
+
+      if ( myHitOther('player', 'block04_right') ){
+        stop_left = true
+      }
+
+      if ( myHitOther('player', 'block04_top') ){
+        stop_down = true
+      }
+
       if ( myHitOther('player', 'death_left') ){
         gameover = true
       }
@@ -117,10 +160,21 @@
       size2()
       document.getElementById('try').style = 'position: absolute; top: -10000px;'
 
+      clearInterval(clock3)
+      clock3 = setInterval(function() {
+        if (gameover == true) {} else {
+        score = score + 1
+        document.getElementById('score').innerHTML = 'Score <br> ' + score
+        }
+      }, 1000)
+
       clearInterval(clock)
       clock = setInterval(function(){
         if (gameover == true) {
           document.getElementById('try').style = 'position: sticky; font-size: 100px;'
+          if (score > 20) {
+            //Go to level 2
+          }
         } else if (gameover == false) {
           document.getElementById('try').style = 'position: absolute; top: -10000px;'
         }
@@ -159,29 +213,70 @@
 
     cng01 = false
     cng02 = false
+    cng03 = false
+    cng04 = false
 
     function srt2() {
       clearInterval(clock2)
       clock2 = setInterval(function(){
         //console.log('fff')
         document.getElementById('block01_top').style.left = parseInt(document.getElementById('block01_top').style.left) - 10 + 'px'
-        if (parseInt(document.getElementById('block01_top').style.left) == 0 || parseInt(document.getElementById('block01_top').style.left) < 0) {
+        if (parseInt(document.getElementById('block01_top').style.left) == 0 || parseInt(document.getElementById('block01_top').style.left) < 0 || reset == 0) {
           x = Math.floor(Math.random() * (1000 - 1) + 1)
 
           document.getElementById('block01_top').style.left = window.innerWidth + x + 'px'
           cng01 = true
+
+          if (reset != 0 && gameover == false) {
+          score = score + 10
+          document.getElementById('score').innerHTML = 'Score <br> ' + score
+          }
         }
 
         document.getElementById('block02_top').style.left = parseInt(document.getElementById('block02_top').style.left) - 10 + 'px'
-        if (parseInt(document.getElementById('block02_top').style.left) == 0 || parseInt(document.getElementById('block02_top').style.left) < 0) {
+        if (parseInt(document.getElementById('block02_top').style.left) == 0 || parseInt(document.getElementById('block02_top').style.left) < 0 || reset == 0) {
           x = Math.floor(Math.random() * (1000 - 1) + 1)
 
           document.getElementById('block02_top').style.left = window.innerWidth + x + 'px'
           cng02 = true
+
+          if (reset != 0 && gameover == false) {
+          score = score + 10
+          document.getElementById('score').innerHTML = 'Score <br> ' + score
+          }
         }
 
+        document.getElementById('block03_top').style.left = parseInt(document.getElementById('block03_top').style.left) - 10 + 'px'
+        if (parseInt(document.getElementById('block03_top').style.left) == 0 || parseInt(document.getElementById('block03_top').style.left) < 0 || reset == 0) {
+          x = Math.floor(Math.random() * (1000 - 1) + 1)
+
+          document.getElementById('block03_top').style.left = window.innerWidth + x + 'px'
+          cng03 = true
+
+          if (reset != 0 && gameover == false) {
+          score = score + 10
+          document.getElementById('score').innerHTML = 'Score <br> ' + score
+          }
+        }
+
+        document.getElementById('block04_top').style.left = parseInt(document.getElementById('block04_top').style.left) - 10 + 'px'
+        if (parseInt(document.getElementById('block04_top').style.left) == 0 || parseInt(document.getElementById('block04_top').style.left) < 0 || reset == 0) {
+          x = Math.floor(Math.random() * (1000 - 1) + 1)
+
+          document.getElementById('block04_top').style.left = window.innerWidth + x + 'px'
+          cng04 = true
+
+          if (reset != 0 && gameover == false) {
+          score = score + 10
+          document.getElementById('score').innerHTML = 'Score <br> ' + score
+          }
+        }
+
+        reset = 1
         size()
         size2()
+        size3()
+        size4()
       }, 30)
     }
 
@@ -235,7 +330,7 @@
       document.getElementById('block02_left').style.height = floor + 'px'
 
       document.getElementById('block02_right').style.top = parseInt(document.getElementById('block02_top').style.top) + 30 +'px'
-      document.getElementById('block02_right').style.left = parseInt(document.getElementById('block02_top').style.left) + parseInt(document.getElementById('block01_top').style.width) + 'px'
+      document.getElementById('block02_right').style.left = parseInt(document.getElementById('block02_top').style.left) + parseInt(document.getElementById('block02_top').style.width) + 'px'
       document.getElementById('block02_right').style.height = floor + 'px'
 
       document.getElementById('block02_deco').style.left = parseInt(document.getElementById('block02_top').style.left) - 30 + 'px'
@@ -244,10 +339,58 @@
       document.getElementById('block02_deco').style.height = floor + 'px'
     }
 
-    function hi(min, max) {
-      x = Math.floor(Math.random() * (max - min) + min)
-      document.getElementById('block01_top').style.top = x + 'px'
-      console.log(x)
+    function size3() {
+      floor = window.innerHeight - 110
+      right_side = window.innerWidth - 110
+
+      x = window.innerHeight - 110
+      x2 = window.innerHeight - 500
+
+      if (cng03 == true) {
+      x3 = Math.floor(Math.random() * (x - x2) + x2)
+      document.getElementById('block03_top').style.top = x3 + 'px'
+      cng03 = false
+      }
+
+      document.getElementById('block03_left').style.top = parseInt(document.getElementById('block03_top').style.top) + 30 +'px'
+      document.getElementById('block03_left').style.left = parseInt(document.getElementById('block03_top').style.left) - 30 + 'px'
+      document.getElementById('block03_left').style.height = floor + 'px'
+
+      document.getElementById('block03_right').style.top = parseInt(document.getElementById('block03_top').style.top) + 30 +'px'
+      document.getElementById('block03_right').style.left = parseInt(document.getElementById('block03_top').style.left) + parseInt(document.getElementById('block03_top').style.width) + 'px'
+      document.getElementById('block03_right').style.height = floor + 'px'
+
+      document.getElementById('block03_deco').style.left = parseInt(document.getElementById('block03_top').style.left) - 30 + 'px'
+      document.getElementById('block03_deco').style.width = parseInt(document.getElementById('block03_top').style.width) + 60 + 'px'
+      document.getElementById('block03_deco').style.top = document.getElementById('block03_top').style.top
+      document.getElementById('block03_deco').style.height = floor + 'px'
+    }
+
+    function size4() {
+      floor = window.innerHeight - 110
+      right_side = window.innerWidth - 110
+
+      x = window.innerHeight - 110
+      x2 = window.innerHeight - 500
+
+      if (cng04 == true) {
+      x3 = Math.floor(Math.random() * (x - x2) + x2)
+      document.getElementById('block04_top').style.top = x3 + 'px'
+      cng04 = false
+      }
+
+      document.getElementById('block04_left').style.top = parseInt(document.getElementById('block04_top').style.top) + 30 +'px'
+      document.getElementById('block04_left').style.left = parseInt(document.getElementById('block04_top').style.left) - 30 + 'px'
+      document.getElementById('block04_left').style.height = floor + 'px'
+
+      document.getElementById('block04_right').style.top = parseInt(document.getElementById('block04_top').style.top) + 30 +'px'
+      document.getElementById('block04_right').style.left = parseInt(document.getElementById('block04_top').style.left) + parseInt(document.getElementById('block04_top').style.width) + 'px'
+      document.getElementById('block04_right').style.height = floor + 'px'
+
+      document.getElementById('block04_deco').style.left = parseInt(document.getElementById('block04_top').style.left) - 30 + 'px'
+      document.getElementById('block04_deco').style.width = parseInt(document.getElementById('block04_top').style.width) + 60 + 'px'
+      document.getElementById('block04_deco').style.top = document.getElementById('block04_top').style.top
+      document.getElementById('block04_deco').style.height = floor + 'px'
     }
 
     document.addEventListener('keydown', function(e) {
