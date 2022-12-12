@@ -1,399 +1,112 @@
 <!DOCTYPE html>
-chat gpg
-<html> 
+<html>
+  
 <head>
-  <title>Slime JUST a fucking slime</title>
-  <meta title="author" content="me, myslef, and I">
-  <link rel="stylesheet" href="" type="text/css">
-  <script src="shooter.js"></script>
+    <title>Swap game</title>
+
+    <style>
+    html {
+      font-size:22px
+    }
+  
+    body {
+      background-color: rgb(100, 96, 96);
+      color: rgb(255, 255, 255);
+      font-family: cursive;
+      font-style: normal;
+      overflow: hidden;
+    }
+
+    tr, th, td, table {
+      border: 2px solid white;
+      border-collapse: collapse;
+    }
+    </style>
 </head>
-<body onload="{srt(); srt2(); sz(); ld();}" onresize="{sz();}">
-  
-  <!--
-    Remember important stuff
-    1. php sql database 
-    2.
-    3.
-  -->
 
-  <!--Player-->
-  <img id="player" src="images/slime02.png" style="zoom: 100%; width: 100px; height: 100px; position: absolute; top: 150px; left: 100px;">
-  <div id="info" style="background-color:red; width: 200px; height: 40px; position: absolute; top: 0px; left: 0px; color: white">
-    &nbsp; Area: caves<br>
-    &nbsp; Lives: 3 <br>
-    &nbsp; x <br>
-    <br>
-    <b>&nbsp; Debug info</b><br>
-    &nbsp; Room number: 1
-  </div>
-
-  <div id="inventory" style="position: absolute; background-color: rgba(255, 255, 255, 0.603); border-radius: 5%; height: 500px; width: 500px; top: -1000px; left: 550px;">
-    <center>
-    <div style="font-size: 45px;">This is the title</div><br>
-    <div style="font-size: 20px;">Do other things</div><br>
-    <button onclick="{erase()}">Reset save to default</button>
-  </center>
-  </div>
-
-  <!--Other objects-->
-  <img id="death" src="" alt="Enemy" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 275px;">
-  
-  <img id="save" src="" alt="Save" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 385px;">
-  <img id="save_prompt" src="" alt="Click this to save" onclick="{sv();}" style="background-color:yellow; width: 100px; height: 100px; position: absolute; top: -1000px; left: 385px;">
-  
-  <img id="npc01" src="" alt="NPC" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 605px;">
-
-  <div id="dialogbox" src="" alt="NPC" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 605px;">Fuck a duck bro</div>
-
-  <!--Walls-->
-  <img id="obj" src="" alt="Object" style="background-color:red; width: 100px; height: 100px; position: absolute; top: -1000px; left: 495px;">
+<form name="myform" id="myform"> 
 
 
-  <!--doors-->
-  <img id="door" src="" alt="Door" style="background-color:red; width: 160px; height: 110px; position: absolute; top: -1000px; left: 715px;">
-  <img id="door2" src="" alt="Door" style="background-color:red; width: 160px; height: 110px; position: absolute; top: 650px; left: 715px;">
+  <table border="1">
+         
+      <tr>
 
-  <!--style-->
-  <div id="floor" style="z-index: -998; background-color:gray; width: 1320px; height: 560px; position: absolute; top: 90px; left: 100px;"></div>
-  <div id="walls" style="z-index: -999; background-color:black; width: 1550px; height: 760px; position: absolute; top: 0px; left: 0px;"></div>
 
-  <!--Background for when your page scroll sucks-->
-  <img id="x" src="" style="z-index: -1000; position: absolute; width: 100px; height: 100px; top: 0px; left: 0px;">
+          <td bgcolor='red' id="a">
+
+            <div ondrop="drop(event);" ondragover="allowDrop(event)">
+              <img src=""  
+              ondragstart="drag(event);" id="1" draggable="true" alt='Cell 1'/> 
+            </div>
+          </td>
+
+
+          <td bgcolor='blue'>
+              <div ondrop="drop(event);" ondragover="allowDrop(event)">
+                  <img src=""  
+                  ondragstart="drag(event);" id="2" draggable="true" alt='Cell 2'/> </div>
+          </td>
+
+
+         <td bgcolor='red'>
+              <div ondrop="drop(event);" ondragover="allowDrop(event)">
+                <img src=""  
+              ondragstart="drag(event);" id="3" draggable="true" alt='Cell 3'/> </div>
+          </td>
+
+
+      </tr>
+      <tr>
+
+
+          <td bgcolor='blue'>
+              <div ondrop="drop(event);" ondragover="allowDrop(event)">
+                <img src=""  
+              ondragstart="drag(event);" id="4" draggable="true" alt='Cell 4'/> </div>
+          </td>
+
+
+         <td bgcolor='red' >
+              <div ondrop="drop(event);" ondragover="allowDrop(event)">
+                <img src=""  
+              ondragstart="drag(event);" id="5" draggable="true" alt='Cell 5'/> </div>
+          </td>
+
+
+        <td bgcolor='blue'>
+              <div ondrop="drop(event);" ondragover="allowDrop(event)"> 
+              </div>
+          </td>
+
+      </tr>
+  </table> 
+  </form>
+<body>
+  <script>
+    function drag(ob)
+{
+    ob.dataTransfer.setData("Text",ob.target.id);
+}
+
+function drop(ob)
+{
+    var id = ob.dataTransfer.getData("Text");
+    var t = ob.target;
+
+    if (ob.target.nodeName == "IMG")
+    t = ob.target.parentNode;
+    t.innerHTML = "";
+    var img = document.getElementById(id);
+    t.appendChild(img);
+    console.log(img);
+    
+    ob.preventDefault();    
+}
+
+function allowDrop(ob)
+{
+    ob.preventDefault();
+}
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-//Check if this are touching
-function myHitOther(my1,my2){
-  left1   = parseInt(document.getElementById(my1).style.left)
-  right1  = left1 + parseInt(document.getElementById(my1).style.width)
-  top1    = parseInt(document.getElementById(my1).style.top)   
-  bottom1 = top1   + parseInt(document.getElementById(my1).style.height)
-  left2   = parseInt(document.getElementById(my2).style.left)
-  right2  = left2 + parseInt(document.getElementById(my2).style.width)
-  top2    = parseInt(document.getElementById(my2).style.top)   
-  bottom2 = top2   + parseInt(document.getElementById(my2).style.height)
-  if ((right1  >=  left2  ) &&      	   
-      (bottom1 >=  top2   ) &&
-      (left1   <=  right2 ) &&
-      (top1    <=  bottom2) ){
-      return true
-  }
-}
-
-let room_number = 1
-let area = 'caves'
-let lives = 3
-let info = ''
-
-candie = true
-
-colright = false
-colleft = false
-
-coltop = false
-colbottom = false
-
-inbox = false
-
-
-dio01 = false
-dionum01 = 1
-
-function erase() {
-  room_number = 1
-  area = 'caves'
-  lives = 3
-  sv()
-}
-
-function sv() {
-  alert('The following is saved\nLives: ' + lives + '\nArea: ' + area + '\nRoom number: ' + room_number)
-  localStorage.setItem('lives', lives)
-  localStorage.setItem('area', area)
-  localStorage.setItem('roomnum', room_number)
-  move01 = false
-  move02 = false
-  move03 = false
-  move04 = false
-  document.getElementById('player').style.top = document.getElementById('save').style.top
-  document.getElementById('player').style.left = parseInt(document.getElementById('save').style.left) + 110 + 'px'
-}
-
-function ld() {
-  lives = localStorage.getItem('lives')
-  area = localStorage.getItem('area')
-  room_number = localStorage.getItem('roomnum')
-
-  setTimeout(function(){
-    document.getElementById('player').style.top = document.getElementById('save').style.top
-    document.getElementById('player').style.left = parseInt(document.getElementById('save').style.left) + 110 + 'px'
-}, 50);
-
-  
-}
-
-function myCheckHit(){
-  if ( myHitOther('player','death') ){
-    if (candie == true && lives == 1) {
-      ld()
-    } else if (candie == true) {
-      candie = false
-      lives = lives - 1
-    }
-  } else {
-    candie = true
-  }
-
-  if ( myHitOther('player','npc01') ){
-    document.getElementById('dialogbox').style.top = '600px'
-    dio01 = true
-    dionum01 = 1
-  }
-
-  if ( myHitOther('player','save') ){
-    document.getElementById('save_prompt').style.top = '0px'
-  } else {
-    document.getElementById('save_prompt').style.top = '-10000px'
-  }
-
-  if ( myHitOther('player','obj') ){
-    inbox = true
-    if (group == 1) {
-    if (move01 == true) {
-      colright = true
-      console.log('bound right')
-    }
-
-    if (move02 == true) {
-      colleft = true
-      console.log('bound left')
-    }
-  }
-
-  if (group == 2) {
-    if (move03 == true) {
-      coltop = true
-      console.log('bound top')
-    }
-
-    if (move04 == true) {
-      colbottom = true
-      console.log('bound bottom')
-    }
-  }
-  } else {
-    inbox = false
-  }
-
-  //Track room
-  if ( myHitOther('player','door2') && room_number == 1 ){
-    console.log('Moved room')
-    room_number = 2
-  }
-
-  if ( myHitOther('player','door') && room_number == 2 ){
-    console.log('Moved room')
-    room_number = 1
-  }
-}
-
-let clock2
-
-function srt2() {
-  clearInterval(clock2)
-  clock2 = setInterval(function(){
-    //console.log('check for room change')
-
-    if (room_number == 1) {
-      document.getElementById('door').style.top = '-1000px'
-
-      document.getElementById('save').style.top = '-1000px'
-      document.getElementById('obj').style.top = '-1000px'
-      document.getElementById('death').style.top = '-1000px'
-      document.getElementById('npc01').style.top = '-1000px'
-
-      document.getElementById('door2').style.top = '650px'
-      document.getElementById('door2').style.height = '110px'
-    }
-
-    if (room_number == 2) {
-      document.getElementById('door2').style.top = '-1000px'
-
-      document.getElementById('door').style.top = '0px'
-      document.getElementById('door').style.height = '90px'
-      document.getElementById('door').style.left = '615px'
-
-      document.getElementById('save').style.top = '515px'
-
-      document.getElementById('obj').style.top = '315px'
-      document.getElementById('obj').style.left = '300px'
-
-      document.getElementById('death').style.top = '215px'
-      document.getElementById('death').style.left = '900px'
-
-      document.getElementById('npc01').style.top = '415px'
-      document.getElementById('npc01').style.left = '900px'
-    }
-
-    //change the visual room info
-    document.getElementById('info').innerHTML = '&nbsp; Area: caves<br> &nbsp; Lives: ' + lives + ' <br> &nbsp; x <br> <br> <b>&nbsp;Debug info</b><br> &nbsp; Room number: ' + room_number
-  }, 1)
-  }
-
-//Move the player
-let clock
-let speed = 10
-
-let group
-chat = false
-
-function srt() {
-  clearInterval(clock)
-  clock = setInterval(function(){
-
-    if (inbox == false) {
-    test = parseInt(document.getElementById('obj').style.top)
-    test2 = parseInt(document.getElementById('player').style.top) + parseInt(document.getElementById('obj').style.height) - 10
-    test3 = parseInt(document.getElementById('player').style.top) - parseInt(document.getElementById('obj').style.height) + 10
-
-    if (test > test2) {
-      group = 2
-      console.log(group)
-    } else if (test < test3) {
-      group = 2
-      console.log(group)
-    } else {
-      group = 1
-      console.log(group)
-    }
-  }
-
-    if (move01 == true && parseInt(document.getElementById('player').style.left) < 1320 && colright == false) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 + 'px'
-
-      colleft = false
-
-      coltop = false
-      colbottom = false
-    }
-
-    if (move02 == true && parseInt(document.getElementById('player').style.left) > 100 && colleft == false) {
-      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 + 'px'
-
-      colright = false
-
-      coltop = false
-      colbottom = false
-    }
-
-
-    if (move03 == true && parseInt(document.getElementById('player').style.top) > 90 && coltop == false) {
-      document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) - 10 + 'px'
-
-      colright = false
-      colleft = false
-
-      colbottom = false
-    }
-
-
-    if (move04 == true && parseInt(document.getElementById('player').style.top) < 550 && colbottom == false) {
-      document.getElementById('player').style.top = parseInt(document.getElementById('player').style.top) + 10 + 'px'
-
-      colright = false
-      colleft = false
-
-      coltop = false
-    }
-
-    myCheckHit()
-  }, speed)
-  }
-
-move01 = false //right
-move02 = false //left
-move03 = false //up
-move04 = false //down
-
-inventory_toggle = false
-
-//detect when keys are pressed
-document.addEventListener("keydown", function(e) {
-  if (e.key == 'd' || e.key == 'D') {
-    move01 = true
-
-
-    dio01 = false
-    }
-
-  if (e.key == 'a' || e.key == 'A') {
-    move02 = true
-
-    dio01 = false
-    }
-
-  if (e.key == 'w' || e.key == 'W') {
-    move03 = true
-
-    dio01 = false
-    }
-
-  if (e.key == 's' || e.key == 'S') {
-    move04 = true
-
-    dio01 = false
-    }
-
-    if (e.key == 'f' || e.key == 'F') {
-      if (inventory_toggle == false) {
-      document.getElementById('inventory').style.top = '125px'
-      inventory_toggle = true
-      } else if (inventory_toggle == true){
-        document.getElementById('inventory').style.top = '-1000px'
-        inventory_toggle = false
-      }
-      }
-
-      if (e.keyCode == 32 && dio01 == true) {
-        x = document.getElementById('dialogbox').innerHTML
-        //Put stuff here
-        document.getElementById('dialogbox').innerHTML = x
-      }
-});
-
-
-document.addEventListener("keyup", function(e) {
-  if (e.key == 'd' || e.key == 'D') {
-    move01 = false
-    }
-
-  if (e.key == 'a' || e.key == 'A') {
-    move02 = false
-    }
-
-  if (e.key == 'w' || e.key == 'W') {
-    move03 = false
-    }
-  
-  if (e.key == 's' || e.key == 'S') {
-    move04 = false
-    }
-});
-
-//set the background
-function sz() {
-  
-  var x = window.innerWidth
-  document.getElementById('x').style.width = x + 'px'
-
-  var y = window.innerHeight
-  document.getElementById('x').style.height = y + 'px'
-
-  console.log('window dimentions \n' + x + '\n' + y)
-}
