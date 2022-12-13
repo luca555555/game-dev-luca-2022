@@ -3,10 +3,9 @@
   <had>
     <link rel="stylesheet" href="main.css" type="text/css">
   </had>
-  <body onload="{rndm()}">
-    <input id="mytext" type="text" value="45" placeholder="Amount of numbers">
+  <body onload="{rndm(); srt()}">
     <button class="button button003" onclick="{rndm()}">Randomize numbers</button>
-    <button class="button button003" onclick="{srt()}">Sort</button>
+    <input id="mytext" type="text" value="45" placeholder="Amount of numbers">
     <div id="div01"></div>
     <script>
       let ar = []
