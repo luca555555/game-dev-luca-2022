@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <had>
+    <link rel="stylesheet" href="main.css" type="text/css">
+  </had>
+  <body onload="{rndm()}">
+    <input id="mytext" type="text" value="15" placeholder="Amount of numbers">
+    <button class="button button003" onclick="{rndm()}">Randomize numbers</button>
+    <button class="button button003" onclick="{srt()}">Sort</button>
+    <div id="div01"></div>
+    <script>
+      let ar = []
+
+      function rndm() {
+        x = document.getElementById('mytext').value
+        document.getElementById('div01').innerHTML = ''
+        ar.length = 0
+
+        for (let i = 0; i < x; i++) {
+          y = Math.floor(Math.random() * 100) + 1
+
+          ar.push(y)
+
+          document.getElementById('div01').innerHTML += y +','
+        }
+        console.log(ar)
+      }
+
+      z = 0
+      x = ar.length
+      temp = 0
+
+      function srt() {
+        setInterval(function(){
+          console.log(y)
+
+          y = ar[z]
+          y2 = ar[z + 1]
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (z > x) {
+          z = 0
+        } else {
+          z++
+        }
+
+        document.getElementById('div01').innerHTML = ar
+        }, 1);
+      }
+    </script>
+  </body>
+</html>
