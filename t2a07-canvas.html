@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+<head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+</head>
+<body>
+    <center>
+        <p>Start point</p>
+        <input type="text" id="x" placeholder="x value" value="0">
+        <input type="text" id="x2" placeholder="y value" value="0">
+        <br><br>
+        <p>End point</p>
+        <input type="text" id="x3" placeholder="x value" value="1000">
+        <input type="text" id="x4" placeholder="y value" value="400">
+        <br><br>
+        <details>
+          <input type="text" id="x5" placeholder="text" value="Hello world!">
+          <input type="text" id="x6" placeholder="color" value="black">
+          <input type="text" id="x7" placeholder="" value="">
+          <summary>
+            More inputs
+          </summary>
+        </details>
+
+        <br>
+
+        <select name="x" id="sel"> 
+
+          <optgroup label="Draw"> 
+          <option value="a">Line</option> 
+          <option value="b">Box</option>
+          <option value="c">Circle</option>
+          <option value="d">Text</option>
+          </optgroup> 
+
+          <optgroup label="Other"> 
+          <option value="a2">Erase</option> 
+          <option value="x">nothing</option> 
+          </optgroup> 
+
+        </select><br><br>
+
+        <p>Enter = draw stuff</p>
+
+    <canvas id="board" width="1000" height="400" style="border:5px solid #000000;"></canvas>
+    </center>
+
+    <script>
+
+document.addEventListener("keyup", function(e) {
+  if (e.keyCode == 13) {
+    tst();
+  };
+});
+
+function x() {
+  y = document.getElementById('sel').value
+  alert(y)
+}
+
+        function tst() {
+        y = document.getElementById('sel').value
+
+        var c = document.getElementById("board");
+        var srt1 = document.getElementById("x").value;
+        var srt2 = document.getElementById("x2").value;
+        var end1 = document.getElementById("x3").value;
+        var end2 = document.getElementById("x4").value;
+        
+        if (y == 'a') {
+        var ctx = c.getContext("2d");
+        ctx.moveTo(srt1, srt2);
+        ctx.lineTo(end1, end2);
+        ctx.stroke();
+        }
+
+        if ( y == 'b') {
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "blue";
+        ctx.fillRect(srt1, srt2, end1, end2 );
+        }
+
+        if (y == 'c') {
+          var ctx = c.getContext("2d");
+          ctx.beginPath();
+          ctx.arc(srt1, srt2, end1, end2, 2 * Math.PI);
+          ctx.stroke();
+        }
+
+        if (y == 'd') {
+          temp = document.getElementById('x5').value
+          var ctx = c.getContext("2d");
+          ctx.font = "30px Arial";
+          ctx.strokeText(temp, srt1, srt2);
+        }
+
+        if (y == 'a2') {
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, c.width, c.height );
+        }
+
+
+        }
+    </script>
+</body>
+</head>
