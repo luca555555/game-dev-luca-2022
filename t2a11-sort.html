@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="main.css" type="text/css">
   </had>
   <body onload="{rndm()}">
-    <input id="mytext" type="text" value="15" placeholder="Amount of numbers">
+    <input id="mytext" type="text" value="45" placeholder="Amount of numbers">
     <button class="button button003" onclick="{rndm()}">Randomize numbers</button>
     <button class="button button003" onclick="{srt()}">Sort</button>
     <div id="div01"></div>
@@ -36,6 +36,24 @@
 
           y = ar[z]
           y2 = ar[z + 1]
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
 
         if (y > y2) {
           temp = y
