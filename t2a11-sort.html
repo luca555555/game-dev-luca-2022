@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <had>
+  <head>
     <link rel="stylesheet" href="main.css" type="text/css">
-  </had>
+    <style>
+        body {
+            overflow-wrap: break-word;
+        }
+    </style>
+  </head>
   <body onload="{rndm(); srt()}">
     <button class="button button003" onclick="{rndm()}">Randomize numbers</button>
     <input id="mytext" type="text" value="45" placeholder="Amount of numbers">
@@ -17,18 +22,17 @@
 
         for (let i = 0; i < x; i++) {
           y = Math.floor(Math.random() * 100) + 1
-
           ar.push(y)
-
           document.getElementById('div01').innerHTML += y +','
         }
-        console.log(ar)
       }
 
-      z = 0
+      z = 0a
       x = ar.length
       temp = 0
 
+      //This sort is only fast with about 20 numbers but running it 5 times makes it work fairly quick for about 100 numbers
+      //Only down side is the page needs to be loaded for 5 seconds to reach max speed
       function srt() {
         setInterval(function(){
           console.log(y)
@@ -68,6 +72,211 @@
 
         document.getElementById('div01').innerHTML = ar
         }, 1);
+
+        setTimeout(function() {
+            setInterval(function(){
+          console.log(y)
+
+          y = ar[z]
+          y2 = ar[z + 1]
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (z > x) {
+          z = 0
+        } else {
+          z++
+        }
+
+        document.getElementById('div01').innerHTML = ar
+        }, 1);
+        }, 1000);
+
+        setTimeout(function() {
+            setInterval(function(){
+          console.log(y)
+
+          y = ar[z]
+          y2 = ar[z + 1]
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (z > x) {
+          z = 0
+        } else {
+          z++
+        }
+
+        document.getElementById('div01').innerHTML = ar
+        }, 1);
+        }, 2000);
+
+        setTimeout(function() {
+            setInterval(function(){
+          console.log(y)
+
+          y = ar[z]
+          y2 = ar[z + 1]
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (z > x) {
+          z = 0
+        } else {
+          z++
+        }
+
+        document.getElementById('div01').innerHTML = ar
+        }, 1);
+        }, 3000);
+
+        setTimeout(function() {
+            setInterval(function(){
+          console.log(y)
+
+          y = ar[z]
+          y2 = ar[z + 1]
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (z > x) {
+          z = 0
+        } else {
+          z++
+        }
+
+        document.getElementById('div01').innerHTML = ar
+        }, 1);
+        }, 4000);
+
+        setTimeout(function() {
+            setInterval(function(){
+          console.log(y)
+
+          y = ar[z]
+          y2 = ar[z + 1]
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (y > y2) {
+          temp = y
+          ar[z] = y2
+          ar[z + 1] = temp
+        }
+
+        if (z > x) {
+          z = 0
+        } else {
+          z++
+        }
+
+        document.getElementById('div01').innerHTML = ar
+        }, 1);
+        }, 5000);
       }
     </script>
   </body>
