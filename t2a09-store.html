@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>X</title>
+    <link rel="stylesheet" href="main.css" type="text/css">
+
+    <style>
+    html {
+      font-size:22px
+    }
+  
+    body {
+      background-color: rgb(100, 96, 96);
+      color: rgb(255, 255, 255);
+      font-family: cursive;
+      font-style: normal;
+      overflow: hidden;
+    }
+    </style>
+</head>
+<body onload="{srt()}">
+  <center>
+  <h1>t2a09 | Local storage</h1>
+  <h5 id="sadness">Use 'A' and 'D' to move cube</h5>
+  <button style="color: black;" class='button' onclick="{sv()}">Save</button>
+  <button style="color: black;" class='button' onclick="{ld()}">Load</button>
+  <div id="player" style="width: 100px; height: 100px; position: absolute; top: 250px; left: 500px; background-color: green;"></div>
+</center>
+  <script>
+    let clock
+
+    move_right = false
+    move_left = false
+    move_up = false
+    move_down = false
+
+    function srt() {
+  clearInterval(clock)
+  clock = setInterval(function(){
+    if (move_right == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) + 10 +'px'
+    }
+    if (move_left == true) {
+      document.getElementById('player').style.left = parseInt(document.getElementById('player').style.left) - 10 +'px'
+    }
+   }, 5)
+ }
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key == 'd' || e.key == 'D') {
+        move_right = true
+      }
+
+      if (e.key == 'a' || e.key == 'A') {
+        move_left = true
+      }
+    });
+
+    document.addEventListener('keyup', function(e) {
+      if (e.key == 'd' || e.key == 'D') {
+        move_right = false
+      }
+      if (e.key == 'a' || e.key == 'A') {
+        move_left = false
+      }
+    });
+
+    function sv() {
+      document.getElementById('sadness').innerHTML = 'Saved value: ' + document.getElementById('player').style.left
+      localStorage.setItem("playerx", document.getElementById('player').style.left);
+    }
+
+      function ld() {
+        document.getElementById('player').style.left = localStorage.getItem("playerx")
+      }
+  </script>
+</body>
+</html>
