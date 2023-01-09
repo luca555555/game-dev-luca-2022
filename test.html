@@ -1,112 +1,460 @@
 <!DOCTYPE html>
 <html>
-  
-<head>
-    <title>Swap game</title>
+    <head>
+        <meta name="author" content="Yo7">
+        <link rel="stylesheet" href="SL.css" type="text/css">
+        <script src="SL.js"></script>
+    </head>
+    <body onresize="{resizepage()}" onload="{centerscreen()}">
 
-    <style>
-    html {
-      font-size:22px
-    }
-  
-    body {
-      background-color: rgb(100, 96, 96);
-      color: rgb(255, 255, 255);
-      font-family: cursive;
-      font-style: normal;
-      overflow: hidden;
-    }
+        <div id="startscreen" style="position: absolute; background-color: black; display: block; z-index: 11; left: 0px;">
+            <p style="font-size: 80px; z-index: 11;">Cave of Slime</p>
+            <p style="font-size: 40px;">Save info</p>
+            <p style="font-size: 20px;">None</p>
+            <button onclick="{start()}">Play</button>
+            <button onclick="{ksv()}">Destroy save</button>
+        </div>
 
-    tr, th, td, table {
-      border: 2px solid white;
-      border-collapse: collapse;
-    }
-    </style>
-</head>
-
-<form name="myform" id="myform"> 
-
-
-  <table border="1">
-         
-      <tr>
-
-
-          <td bgcolor='red' id="a">
-
-            <div ondrop="drop(event);" ondragover="allowDrop(event)">
-              <img src=""  
-              ondragstart="drag(event);" id="1" draggable="true" alt='Cell 1'/> 
-            </div>
-          </td>
-
-
-          <td bgcolor='blue'>
-              <div ondrop="drop(event);" ondragover="allowDrop(event)">
-                  <img src=""  
-                  ondragstart="drag(event);" id="2" draggable="true" alt='Cell 2'/> </div>
-          </td>
-
-
-         <td bgcolor='red'>
-              <div ondrop="drop(event);" ondragover="allowDrop(event)">
-                <img src=""  
-              ondragstart="drag(event);" id="3" draggable="true" alt='Cell 3'/> </div>
-          </td>
-
-
-      </tr>
-      <tr>
-
-
-          <td bgcolor='blue'>
-              <div ondrop="drop(event);" ondragover="allowDrop(event)">
-                <img src=""  
-              ondragstart="drag(event);" id="4" draggable="true" alt='Cell 4'/> </div>
-          </td>
-
-
-         <td bgcolor='red' >
-              <div ondrop="drop(event);" ondragover="allowDrop(event)">
-                <img src=""  
-              ondragstart="drag(event);" id="5" draggable="true" alt='Cell 5'/> </div>
-          </td>
-
-
-        <td bgcolor='blue'>
-              <div ondrop="drop(event);" ondragover="allowDrop(event)"> 
-              </div>
-          </td>
-
-      </tr>
-  </table> 
-  </form>
-<body>
-  <script>
-    function drag(ob)
-{
-    ob.dataTransfer.setData("Text",ob.target.id);
-}
-
-function drop(ob)
-{
-    var id = ob.dataTransfer.getData("Text");
-    var t = ob.target;
-
-    if (ob.target.nodeName == "IMG")
-    t = ob.target.parentNode;
-    t.innerHTML = "";
-    var img = document.getElementById(id);
-    t.appendChild(img);
-    console.log(img);
+    <div id="coverscreen" style="position: absolute; top: 0px; left: 0px; background-color: black; width: 10000000px; height: 100000000px; z-index: 10;"></div>
     
-    ob.preventDefault();    
+    <div id="debg" style="display: none; font-size: 50px;"></div>
+
+
+        <div class="inventory" id="inv" style="display: none; left: 0px;">
+            <p style="opacity: 100%;">Inventory</p>
+            <div>sword of dread</div>
+            <div>potion of love</div>
+        </div>
+
+
+        <img class="player" src="" alt="Failed to load player sprite" style="height: 100px; width: 100px; top: 0px; left: 0px;">
+
+
+
+        <img class="enemy" src="" alt="enemy test" style="height: 100px; width: 100px; top: 500px; left: 500px;">
+        <img class="enemy" src="" alt="enemy test" style="height: 100px; width: 100px; top: 500px; left: 900px;">
+        <img class="enemy" src="" alt="enemy test" style="height: 100px; width: 100px; top: 500px; left: 1100px;">
+
+
+        <img class="npc" src="" alt="NPC test" style="top: 500px; left: 700px;">
+        <img class="object" src="" alt="object test" style="height: 100px; width: 100px; top: 200px; left: 700px;">
+
+        <img class="fd" src="" alt="front door" style="height: 100px; width: 100px; top: 200px; left: 1400px;">
+        <img class="bd" src="" alt="back door" style="height: 100px; width: 100px; top: 200px; left: 1100px;">
+
+
+        <img class="save" src="" alt="save test" style="height: 100px; width: 100px; top: 200px; left: 900px; color: black;">
+        <div id="saveop" style="position: absolute; top: 0px; left: 0px; background-color: yellow; width: 1000; height: 600; display: none; color: black;">
+            Want to save your progress?<br>
+            <button style="cursor: pointer;" onclick="{sv()}">Save</button>
+        </div>
+    </body>
+</html>
+
+--
+
+body {
+    background-color: gray;
+    color: white;
+    font-family: cursive;
+    overflow: hidden;
 }
 
-function allowDrop(ob)
-{
-    ob.preventDefault();
+.inventory {
+    background-color: black;
+    font-size: 42px;;
+    color: white;
+    text-shadow: 10, 10, 10 red;
+    padding: 15px;
+    border-radius: 10%;
+    position: absolute;
 }
-  </script>
-</body>
-</html>
+
+.player {
+    background-color: lime;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.enemy {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.npc {
+    background-color: green;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.object {
+    background-color: black;
+    position: absolute;
+}
+
+.decoration {
+    background-color: aquamarine;
+    position: absolute;
+}
+
+.fd {
+    background-color: purple;
+    position: absolute;
+}
+
+.bd {
+    background-color: purple;
+    position: absolute;
+}
+
+.save {
+    background-color: yellow;
+    position: absolute;
+}
+
+--
+
+startclocks()
+winw = window.innerWidth
+winh = window.innerHeight
+
+move_right = false
+move_left = false
+move_up = false
+move_down = false
+
+inventory = false
+doublemove = 0
+
+lives = 999999
+roomnum = 0
+
+let checknull
+
+function centerscreen() {
+    document.getElementById('startscreen').style.left = winw / 2 - 100 + 'px'
+    document.getElementById('saveop').style.left = winw / 2 - 100 + 'px'
+}
+
+function start() {
+    document.getElementById('startscreen').style.display = 'none'
+    document.getElementById('coverscreen').style.display = 'none'
+    ld()
+}
+
+function sv() {
+    localStorage.setItem("lives", lives)
+    localStorage.setItem("roomnum", roomnum)
+}
+
+function ksv() {
+    localStorage.removeItem("lives")
+    localStorage.removeItem("roomnum")
+}
+
+function ld() {
+    lives = localStorage.getItem("lives")
+    roomnum = localStorage.getItem("roomnum")
+
+    if (lives == checknull) {
+        lives = 3
+    }
+    if (roomnum == checknull) {
+        roomnum = 1
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    //Toggle inventory 
+    if (e.key == 'f' || e.key =='F') {
+
+        if (inventory == true) {
+            document.getElementById('inv').style.display = 'none'
+            inventory = false
+        } else {
+            inventory = true
+            document.getElementById('inv').style.display = 'block'
+            document.getElementById('inv').style.left = winw / 2 + 'px'
+        }
+    }
+
+    //Enable debug
+    if (e.key == 'Escape') {
+        document.getElementById('debg').style.display = 'block'
+    }
+
+    if (e.key == 'd' || e.key =='D') {
+        if (move_right == false) {
+            doublemove++
+        }
+        move_right = true
+    }
+    if (e.key == 'a' || e.key =='A') {
+        if (move_left == false) {
+            doublemove++
+        }
+        move_left = true
+    }
+    if (e.key == 's' || e.key =='S') {
+        if (move_down == false) {
+            doublemove++
+        }
+        move_down = true
+    }
+    if (e.key == 'w' || e.key =='W') {
+        if (move_up == false) {
+            doublemove++
+        }
+        move_up = true
+    }
+})
+
+document.addEventListener('keyup', function(e) {
+    if (e.key == 'd' || e.key =='D') {
+        move_right = false
+        doublemove--
+    }
+    if (e.key == 'a' || e.key =='A') {
+        move_left = false
+        doublemove--
+    }
+    if (e.key == 's' || e.key =='S') {
+        move_down = false
+        doublemove--
+    }
+    if (e.key == 'w' || e.key =='W') {
+        move_up = false
+        doublemove--
+    }
+})
+
+canmove = true
+canmoveroom = true
+
+  function checkhit(){
+    const player = document.querySelector('.player')
+    const save = document.querySelector('.save')
+    const enemy = document.querySelectorAll('.enemy')
+    const object = document.querySelectorAll('.object')
+    const forwarddoor = document.querySelector('.fd')
+    const backdoor = document.querySelector('.bd')
+    const npc = document.querySelectorAll('.npc')
+
+    for (i = 0; i < enemy.length; i++) {
+
+    if (
+        parseInt(player.style.top) < parseInt(enemy[i].style.top) + parseInt(enemy[i].style.width) &&
+        parseInt(player.style.top) + parseInt(player.style.width) > parseInt(enemy[i].style.top) &&
+        parseInt(player.style.left) < parseInt(enemy[i].style.left) + parseInt(enemy[i].style.height) &&
+        parseInt(player.style.left) + parseInt(player.style.height) > parseInt(enemy[i].style.left)
+        ) {
+            if (canhit == true) {
+            lives--
+            canhit = false
+            }
+    }
+}
+
+for (i = 0; i < object.length; i++) {
+
+    if (
+        parseInt(player.style.top) < parseInt(object[i].style.top) + parseInt(object[i].style.width) &&
+        parseInt(player.style.top) + parseInt(player.style.width) > parseInt(object[i].style.top) &&
+        parseInt(player.style.left) < parseInt(object[i].style.left) + parseInt(object[i].style.height) &&
+        parseInt(player.style.left) + parseInt(player.style.height) > parseInt(object[i].style.left)
+        ) {
+            console.log('sdasd')
+    }
+}
+
+if (
+    parseInt(player.style.top) < parseInt(forwarddoor.style.top) + parseInt(forwarddoor.style.width) &&
+    parseInt(player.style.top) + parseInt(player.style.width) > parseInt(forwarddoor.style.top) &&
+    parseInt(player.style.left) < parseInt(forwarddoor.style.left) + parseInt(forwarddoor.style.height) &&
+    parseInt(player.style.left) + parseInt(player.style.height) > parseInt(forwarddoor.style.left)
+    ) {
+        if (canmoveroom == true) {
+        roomnum++
+        canmoveroom = false
+        }
+}
+
+if (
+    parseInt(player.style.top) < parseInt(backdoor.style.top) + parseInt(backdoor.style.width) &&
+    parseInt(player.style.top) + parseInt(player.style.width) > parseInt(backdoor.style.top) &&
+    parseInt(player.style.left) < parseInt(backdoor.style.left) + parseInt(backdoor.style.height) &&
+    parseInt(player.style.left) + parseInt(player.style.height) > parseInt(backdoor.style.left)
+    ) {
+        if (canmoveroom == true) {
+            roomnum--
+            canmoveroom = false
+            }
+}
+
+if (
+    parseInt(player.style.top) < parseInt(save.style.top) + parseInt(save.style.width) &&
+    parseInt(player.style.top) + parseInt(player.style.width) > parseInt(save.style.top) &&
+    parseInt(player.style.left) < parseInt(save.style.left) + parseInt(save.style.height) &&
+    parseInt(player.style.left) + parseInt(player.style.height) > parseInt(save.style.left)
+    ) {
+        document.getElementById('saveop').style.display = 'block'
+} else {
+    document.getElementById('saveop').style.display = 'none'
+}
+
+}
+egg = 0
+
+function startclocks() {
+    //Move player
+    let clock
+    clock = setInterval( function () {
+        const player = document.querySelector('.player')
+
+        let disdance = 10
+        if (doublemove == 2) {
+            disdance = 7
+        }
+        if (doublemove < 0) {
+            doublemove = 0
+        }
+
+        //Easterr egg
+        if (doublemove == 4) {
+            if (egg == 0) {
+                alert('Dont do that again')
+            } 
+            if (egg == 1) {
+                alert('>:(')
+            } 
+            if (egg == 2) {
+                alert('So your just gonna keep doing hun')
+            } 
+            if (egg == 3) {
+                alert('yep I knew it')
+            } 
+            if (egg == 4) {
+                alert('OK YOU FOUND THE EASTER EGG YOU CAN GO NOW')
+            }
+            if (egg == 5) {
+                alert('STOP PRESSING ALL 4 MOVE BUTTONS')
+            }
+            if (egg == 6) {
+                alert('ITS NOT THAT HARD')
+            }
+            if (egg == 7) {
+                alert('AHHHHHHHHHHH!!!')
+            }
+            if (egg == 8) {
+                alert('ok')
+            }
+            if (egg == 9) {
+                alert('I see how it is')
+            }
+            if (egg == 10) {
+                alert('If you do that one more time im going to put you at 1 life')
+            }
+            if (egg == 11) {
+                alert('That still didnt stop you')
+            }
+            if (egg == 12) {
+                alert('Fine then this is my game I can do whatever I want to the players that antogonise me')
+            }
+            if (egg == 13) {
+                alert('GRRR if you do this again im gonna reset you back to your last save')
+            }
+            if (egg == 14) {
+                alert('What the hell is wrong with you')
+            }
+            if (egg == 15) {
+                alert('Do you not care about your progress')
+            }
+            if (egg == 16) {
+                alert('APPARENTLY NOT')
+            }
+            if (egg == 17) {
+                alert('Well then')
+            }
+            if (egg == 18) {
+                alert('If you dont care about your progress how about I delete it all')
+            }
+            if (egg == 19) {
+                alert('I bet your shaking in your boots now')
+            }
+            if (egg == 20) {
+                alert('Go ahead do the thing one more time you were warned')
+            }
+            if (egg == 21) {
+                alert(';)')
+            }
+            if (egg == 22) {
+                alert('I hope it was worth it')
+            }
+            if (egg == 23) {
+                alert('Still huh')
+            }
+            if (egg == 24) {
+                alert('I know ill just respond with three dots the next time you do this thats how all the gamedevs tell snoppy players that there nothing left to find right?')
+            }
+            if (egg > 24 && egg < 100) {
+                alert('...')
+            }
+            if (egg == 100) {
+                alert('Dude like seriosly get a life. It probably took me less time to code this game then click all 4 movement buttons 100 times.')
+            }
+            if (egg > 100) {
+                alert('...')
+            }
+            egg++
+            doublemove = 0
+        }
+
+
+        if (move_right == true) {
+            player.style.left = parseInt(player.style.left) + disdance + 'px'
+        }
+        if (move_left == true) {
+            player.style.left = parseInt(player.style.left) - disdance + 'px'
+        }
+        if (move_up == true) {
+            player.style.top = parseInt(player.style.top) - disdance + 'px'
+        }
+        if (move_down == true) {
+            player.style.top = parseInt(player.style.top) + disdance + 'px'
+        }
+
+        checkhit()
+    }, 15)
+
+    //Update debug
+    let clock2
+    clock2 = setInterval( function () {
+        document.getElementById('debg').innerHTML ='Room number: ' + roomnum + '<br><br>Lives: ' + lives + '<br><br>Window width: ' +  winw + '<br>Window height: ' + winh
+    }, 1)
+
+    let clock3
+    clock3 = setInterval( function () {
+        canhit = true
+    },1000)
+
+    let clock4
+    clock4 = setInterval( function () {
+        canmoveroom = true
+    },5000)
+
+}
+
+function resizepage() {
+    winw = window.innerWidth
+    winh = window.innerHeight
+}
